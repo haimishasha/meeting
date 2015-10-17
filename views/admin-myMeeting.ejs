@@ -1,0 +1,174 @@
+<%- include admin-header %>
+<div class="am-g">
+    <div class="am-u-sm-3">
+        <%- include admin-mleft %>
+    </div>
+    <div class="am-u-sm-9">
+
+        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
+            <h2 class="am-titlebar-title ">
+                我的会议
+            </h2>
+
+            <div style="position: absolute ;left:15%">
+                <a href="/admin/meetingApply"><span class="am-icon-plus-square am-icon-sm"></span>新建会议</a>
+            </div>
+
+        </div>
+        <% meetings.forEach(function(meeting){ %>
+        <div class="am-g">
+            <div class="am-u-sm-7">
+                <table class="am-table">
+                    <thead>
+                    <tr>
+                        <th><a href="/admin/meetingRemove?meetingId=<%= meeting.meetingId %>"><span
+                                        class="am-icon-trash-o am-icon-sm"></span>删除</a></th>
+                        <th><a href="/admin/meetingUpdate?meetingId=<%= meeting.meetingId %>"><span
+                                        class="am-icon-pencil am-icon-sm"></span>会议修改</a></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span class="am-icon-rocket"></span>会议主题</td>
+                        <td><%= meeting.Title %></td>
+                    </tr>
+                    <tr>
+                        <td><span class="am-icon-child"></span>会议主办方</td>
+                        <td><%= meeting.organizer %></td>
+                    </tr>
+                    <tr>
+                        <td><span class="am-icon-calculator"></span>会议时间</td>
+                        <td><%= meeting.startTime %>-<%= meeting.endTime %></td>
+                    </tr>
+                    <tr>
+                        <td><span class="am-icon-institution"></span>会议地点</td>
+                        <td><%= meeting.address %></td>
+                    </tr>
+                    <tr>
+                        <td><span class="am-icon-male"></span>会议人数上限</td>
+                        <td><%= meeting.maxNum %></td>
+                    </tr>
+                    <tr>
+                        <td><span class="am-icon-forumbee"></span>ibeacon</td>
+                        <td><%= meeting.ibeacon %></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="am-u-sm-5">
+                <table class="am-table">
+                    <thead>
+                    <tr>
+                        <th><a><span class="am-icon-wrench am-icon-sm "></span>会议控制</a>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><a href="/admin/award/<%= meeting.meetingId %>" class="am-btn am-btn-secondary">进入抽奖</a>
+                        </td>
+                        <td><a href="/admin/myAward?meetingId=<%= meeting.meetingId %>" class="am-btn am-btn-success">抽奖详情</a>
+                        </td>
+                        <td><a href="/admin/Schedule?meetingId=<%= meeting.meetingId %>"><span class="am-icon-calculator"></span>日程规划</a></td>
+
+                    </tr>
+                    <tr>
+                        <td><a href="/admin/message?meetingId=<%= meeting.meetingId %>" class="am-btn am-btn-secondary">进入留言</a>
+                        </td>
+                        <td><a href="/admin/" class="am-btn am-btn-success">留言详情</a></td>
+                        <td>
+                            <div>
+                                <a href="#" data-am-modal="{target: '#doc-modal-2', closeViaDimmer: 0, width: 400, height:500}">
+                                    <span class="am-icon-dashcube"></span>
+                                    发通知
+                                </a>
+                                <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-2">
+                                    <div class="am-modal-dialog">
+                                        <div class="am-modal-hd">发通知
+                                            <a href="javascript: void(0)" class="am-close am-close-spin"
+                                               data-am-modal-close>&times;</a>
+                                        </div>
+                                        <div class="am-modal-bd">
+                                            <form class="am-form" method="post"
+                                                  action="/admin/meetingTemplate?meetingId=<%= meeting.meetingId %>"/>
+                                            <fieldset>
+                                                <legend>通知</legend>
+                                                <div align="left"
+                                                     style="width: 90%;position: absolute;left: 10px;top: 100px">
+                                                    <div class="am-form-group">
+                                                        <label for="doc-ipt-title">标题</label>
+                                                        <input type="text" class="" id="doc-ipt-title" name="first"
+                                                               placeholder="输入标题">
+                                                    </div>
+                                                    <div class="am-form-group">
+                                                        <lable for="datetimepicker22">时间</lable>
+                                                        <input type="text" id="datetimepicker22" name="keyword1"
+                                                               placeholder="输入会议时间"/>
+                                                    </div>
+                                                    <div class="am-form-group">
+                                                        <label for="doc-ipt-body">内容</label>
+                                                        <input type="text" class="" id="doc-ipt-body" name="keyword2"
+                                                               placeholder="输入通知内容">
+                                                    </div>
+                                                    <div class="am-form-group">
+                                                        <label for="doc-ipt-end">会议主办方</label>
+                                                        <input type="text" class="" id="doc-ipt-end" name="remark"
+                                                               placeholder="输入会议主办方">
+                                                    </div>
+                                                </div>
+                                                <p style="position:relative;top:300px">
+                                                    <button type="submite" class="am-btn am-btn-success">发送</button>
+                                                </p>
+                                            </fieldset>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="/signin/<%= meeting.meetingId %>" class="am-btn am-btn-secondary">进入签到</a></td>
+                        <td><a href="/signinstate/<%= meeting.meetingId %>" class="am-btn am-btn-success">签到详情</a></td>
+                        <td>   
+                            <div >
+                                <input type="hidden" class="am-form-field" id="doc-qr-text"
+                                       value="<%= url %><%= meeting.ibeacon %>">
+                                <a href="#" id="doc-gen-qr" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 400, height: 360}">
+                                    <span class="am-icon-archive"></span>
+                                    生成二维码
+                                </a>
+                                <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+                                    <div class="am-modal-dialog">
+                                        <div class="am-modal-hd">右击下载二维码
+                                            <a href="javascript: void(0)" class="am-close am-close-spin"
+                                               data-am-modal-close>&times;</a>
+                                        </div>
+                                        <div class="am-modal-bd" id="doc-qrcode">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="/admin/meetingStart?meetingId=<%= meeting.meetingId %>&ibeacon=<%= meeting.ibeacon %>&meetingStatus=<%= meeting.meetingStatus %>"><input
+                                        type="button" class="am-btn am-btn-secondary <%= meeting.meetingStatus %>"
+                                        value="会议开始"></a>
+                            <input class="status" value="<%= meeting.meetingStatus %>" type="hidden">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+        <% }) %>
+    </div>
+</div>
+
+
+<%- include admin-footer %>

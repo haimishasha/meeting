@@ -1,0 +1,200 @@
+<!--日程规划-->
+<%- include admin-header %>
+<%- include admin-mleft %>
+
+<div style="width: 75%;left: 20%;top:20%;position: absolute">
+    <nav class="scrollspy-nav" data-am-scrollspy-nav="{offsetTop: 45}" data-am-sticky>        
+    </nav>
+    <form method="post" class="am-form">
+    <div id="table1">
+    <table class="am-table am-table-bordered am-table-centered" >
+        <tr>
+            <th style="width:200px"><input style="width: 150px" value="日期" type="text" name="meetingDay" data-am-datepicker/></th>
+            <th colspan="3">详情规划</th>
+        </tr>
+        <tr>
+            <td class="am-text-middle">上午
+
+            </td>
+            <td colspan="3">
+                <table class="am-table am-table-bordered am-table-radius am-table-striped">
+                    <thead>
+                    <tr>
+                        <th>开始时间</th>
+                        <th>结束时间</th>
+                        <th>主讲人</th>
+                        <th>题目</th>
+                    </tr>
+                    </thead>
+                    <tbody class="Mhidden">
+                    </tbody>
+                </table>
+                <div>
+                    <a class="am-btn am-btn-default am-btn-xs"
+                       data-am-modal="{target: '#doc-modal-m', closeViaDimmer: 0, width: 400, height: 500}">
+                        add
+                    </a>
+
+                    <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-m">
+                        <div class="am-modal-dialog">
+                            <div class="am-modal-hd">添加会议详情
+                                <a href="javascript: void(0)" class="am-close am-close-spin"
+                                   data-am-modal-close>&times;</a>
+                            </div>
+                            <div class="am-modal-bd">
+                                    <fieldset>
+
+                                        <legend>填写</legend>
+                                        <div align="left">
+                                            <div class="am-form-group">
+                                                <label>开始时间</label>
+                                                <input type="text" id="datetimepicker1m"/>
+
+                                                <label>结束时间</label>
+                                                <input type="text" id="datetimepicker110m"/>
+
+                                                <label>主讲人</label>
+                                                <input type="text" id="speaker" placeholder="输入主讲人姓名"/>
+
+                                                <label>题目</label>
+                                                <input type="text" class="" id="meetingInfm" placeholder="输入本段时间的会议信息">
+                                            </div>
+                                        </div>
+                                        <a href="javascript:void(0)" onclick="Mhidden()">提交</a>
+                                    </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="am-text-middle">下午</td>
+            <td colspan="3">
+
+                <table class="am-table am-table-bordered am-table-radius am-table-striped">
+                    <thead>
+                    <tr>
+                        <th>开始时间</th>
+                        <th>结束时间</th>
+                        <th>主讲人</th>
+                        <th>题目</th>
+                    </tr>
+                    </thead>
+                    <tbody class="Ahidden">
+                    </tbody>
+                </table>
+                <div>
+                    <a class="am-btn am-btn-default am-btn-xs"
+                       data-am-modal="{target: '#doc-modal-a', closeViaDimmer: 0, width: 400, height: 500}">
+                        add
+                    </a>
+
+                    <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-a">
+                        <div class="am-modal-dialog">
+                            <div class="am-modal-hd">添加会议详情
+                                <a href="javascript: void(0)" class="am-close am-close-spin"
+                                   data-am-modal-close>&times;</a>
+                            </div>
+                            <div class="am-modal-bd">
+
+                                <form class="am-form">
+                                    <fieldset>
+
+                                        <legend>填写</legend>
+                                        <div align="left">
+                                            <div class="am-form-group">
+                                                <label>开始时间</label>
+                                                <input type="text" id="datetimepicker1a"/>
+
+                                                <label>结束时间</label>
+                                                <input type="text" id="datetimepicker110a"/>
+
+                                                <label>主讲人</label>
+                                                <input type="text" id="speaker" placeholder="输入主讲人姓名"/>
+
+                                                <label>内容详情</label>
+                                                <input type="text" class="" id="meetingInfa" placeholder="输入本段时间的会议信息">
+                                            </div>
+                                        </div>
+                                        <a href="javascript:void(0)" onclick="Ahidden()">提交</a>
+                                    </fieldset>
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="am-text-middle">晚上</td>
+            <td colspan="3">
+
+
+                <table class="am-table am-table-bordered am-table-radius am-table-striped">
+                    <thead>
+                    <tr>
+                        <th>开始时间</th>
+                        <th>结束时间</th>
+                        <th>主讲人</th>
+                        <th>题目</th>
+                    </tr>
+                    </thead>
+                    <tbody class="Ehidden">
+                    </tbody>
+                </table>
+               <div>
+                    <a class="am-btn am-btn-default am-btn-xs"
+                       data-am-modal="{target: '#doc-modal-e', closeViaDimmer: 0, width: 400, height: 500}">
+                        add
+                    </a>
+
+                    <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-e">
+                        <div class="am-modal-dialog">
+                            <div class="am-modal-hd">添加会议详情
+                                <a href="javascript: void(0)" class="am-close am-close-spin"
+                                   data-am-modal-close>&times;</a>
+                            </div>
+                            <div class="am-modal-bd">
+
+                                <form class="am-form">
+                                    <fieldset>
+
+                                        <legend>填写</legend>
+                                        <div align="left">
+                                            <div class="am-form-group">
+                                                <label>开始时间</label>
+                                                <input type="text" id="datetimepicker1e"/ >
+
+                                                <label >结束时间</label>
+                                                <input type="text" id="datetimepicker110e"/>
+
+                                                <label>主讲人</label>
+                                                <input type="text" id="speaker" placeholder="输入主讲人姓名"/>
+
+                                                <label>内容详情</label>
+                                                <input type="text" class="" id="meetingInfe" placeholder="输入本段时间的会议信息">
+                                            </div>
+                                        </div>
+                                        <a href="javascript:void(0)" onclick="Ehidden()">提交</a>
+                                    </fieldset>
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </td>
+        </tr></table>
+    </div>
+  <a class="am-btn am-btn-default" onclick="addDay()">add</a>
+   <button class="am-btn am-btn-default" type="submit">提交</button>
+    </form>
+</div>
+
+
+<%- include admin-footer %>

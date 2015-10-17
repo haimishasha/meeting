@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>会议提问</title>
+	<!-- <meta http-equiv="refresh" content="10"> -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+  <!-- <link rel="icon" type="image/png" href="assets/i/favicon.png"> -->
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="/assetx/css/amazeui.min.css">
+  <link rel="stylesheet" href="/llx_css/messageStyle.css">
+
+</head>
+<body class="llx_wrap">
+
+	<div class="llx_page1">
+	<div id="addPage1"></div>
+
+		<div class="am-g llx_frame">
+		  <div class="am-u-sm-4 llx_weixin">
+		  	<img src="./img/background.jpeg" alt="" class="am-thumbnail am-circle llx_weinxinImg"
+		  	style="margin-top:3px;margin-bottom:0px;">
+		  	<div class="llx_weixinName">阳光海岸</div>
+		  </div>
+		  <div class="am-u-sm-8" >
+		  	<p class="llx_que">这个问题是怎么解诀的呢</p>
+		  	<div class="llx_time">12-12 18:30</div>
+		  </div>
+		</div>
+
+		<div class="am-g llx_frame">
+		  <div class="am-u-sm-4 llx_weixin">
+		  	<img src="./img/background.jpeg" alt="" class="am-thumbnail am-circle llx_weinxinImg"
+		  	style="margin-top:3px;margin-bottom:0px;">
+		  	<div class="llx_weixinName">阳光海岸</div>
+		  </div>
+		  <div class="am-u-sm-8" >
+		  	<p class="llx_que">这个问题是怎么解诀的呢</p>
+		  	<div class="llx_time">12-12 18:30</div>
+		  </div>
+		</div>
+
+		<div class="am-g llx_frame">
+		  <div class="am-u-sm-4 llx_weixin">
+		  	<img src="./img/background.jpeg" alt="" class="am-thumbnail am-circle llx_weinxinImg"
+		  	style="margin-top:3px;margin-bottom:0px;">
+		  	<div class="llx_weixinName">阳光海岸</div>
+		  </div>
+		  <div class="am-u-sm-8" >
+		  	<p class="llx_que">这个问题是怎么解诀的呢</p>
+		  	<div class="llx_time">12-12 18:30</div>
+		  </div>
+		</div>
+
+	</div>
+	
+	<div class="">
+	<textarea name="" id="question" rows="4" class="am-u-sm-9 llx_messages "></textarea>
+	</div>
+	<div class="">
+		<div class="llx_send" id="llx_send" onClick="handleSubmit()">发送</div>
+	</div>
+	<!-- <img src="./img/module6.jpg" alt="" class="llx_wrap"> -->
+
+	<footer class="footer">
+		<div class="llx_footerLine"></div>
+	  <p>© 2015 by the TYUST.</p>
+	</footer>
+
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/amazeui.min.js"></script>
+	<script src="/javascripts/socket.io.js"></script>
+	<script type="text/javascript">
+		var total = 0;
+		var flag = 1; //判断页面是否暂停，1为运行态，0为暂停态
+
+
+
+
+
+
+		    var username = '<%= username %>';//微信用户名        //username = "" ;
+		    var headimgurl = '<%= headimgurl %>';
+		    var realname = '<%= realname %>';
+		    var myDate = new Date();
+		    function handleSubmit() {
+		        if (!$('#question').val()) {
+		            alert("不能发送空消息！");
+		        }
+		        else {
+		            var time = {
+		                minute : (date.getMonth() + 1) + "-" + date.getDate() + " " +
+		                date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
+		            };           
+		                                 /*socket.emit('chat message', headimgurl+ "##" +  username + "##" + $('#m').val() + "##" + myDate.getMonth() + "-" + myDate.getDate() + " " + myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds());*/
+		             socket.emit('chat message', {headimgurl: headimgurl,
+		                                          username: username,
+		                                          Content: $('#m').val(),
+		                                          realname:realname,
+		                                          date:time.minute
+		                                            });
+		             }
+		         }
+
+
+
+
+
+
+
+
+
+		$(document).ready(function(){
+
+			function isAdd(){
+				var tmp = questions.pop();
+		 		var headimgurl = tmp.headimgurl;
+		 		var realname = tmp.realname;
+		 		var nickname = tmp.nickname;
+		 		var Content = tmp.Content;
+		 		
+		 		if(total % 11 == 0){
+	 				$(".llx_page1").hide();
+	 				$(".llx_page2").show();
+		 			$("#addPage2").append(
+		 				'<div class="am-g llx_frame">'+
+		 				  '<div class="am-u-sm-1 llx_weixin">'+
+		 				  	'<img src='+headimgurl+' alt="" class="am-thumbnail'+
+		 				  		'am-circle llx_weinxinImg"'+
+		 				  	'style="margin-top:3px;margin-bottom:0px;">'+
+		 				  '</div>'+
+		 				  '<div class="am-u-sm-2">'+
+		 				  '<div class="llx_weixinName">'+realname+'</div>'+
+		 				  '<div class="llx_weixinName">'+nickname+'</div>	'+
+		 				  '</div>'+
+		 				  '<div class="am-u-sm-9" >'+
+		 				  	'<p class="llx_que">'+Content+'</p>'+
+		 				  '</div>'+
+		 				'</div>'
+		 			);
+	 			}
+	 			else{
+	 				$(".llx_nextPage").attr({"display":"block"})
+	 				$("#addPage1").append(
+	 					'<div class="am-g llx_frame">'+
+		 				  '<div class="am-u-sm-1 llx_weixin">'+
+		 				  	'<img src='+headimgurl+' alt="" class="am-thumbnail'+
+		 				  		'am-circle llx_weinxinImg"'+
+		 				  	'style="margin-top:3px;margin-bottom:0px;">'+
+		 				  '</div>'+
+		 				  '<div class="am-u-sm-2">'+
+		 				  '<div class="llx_weixinName">'+realname+'</div>'+
+		 				  '<div class="llx_weixinName">'+nickname+'</div>	'+
+		 				  '</div>'+
+		 				  '<div class="am-u-sm-9" >'+
+		 				  	'<p class="llx_que">'+Content+'</p>'+
+		 				  '</div>'+
+		 				'</div>'
+	 				);
+	 			}
+			}
+
+
+			var socket = io.connect();
+			socket.on("questions",function(data){
+		 		total += 1;
+		 		$(".llx_total").text("目前共"+total+"条提问");
+
+		 		var questions = [];
+		 		questions.unshift(data);
+
+		 		if(flag == 1){
+		 			isAdd();
+		 		}
+			});
+
+			$(".llx_stop").on("click",function(){
+				flag = 0;
+			});
+
+			$(".llx_continue").on("click",function(){
+				flag = 1;
+			});
+
+		})
+		
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

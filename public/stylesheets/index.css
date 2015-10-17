@@ -1,0 +1,154 @@
+article{
+    width: 100%;
+    height: auto;
+}
+.footer-main{
+    background-color:grey;
+    position:fixed;
+    bottom:0;
+    width: 100%;
+    height:50px;
+    left: 0;
+
+}
+.boxes {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15%;
+}
+
+.boxes .box {
+    height: 100px;
+    color: #eee;
+    line-height: 100px;
+    text-align: center;
+    font-weight: bold;
+    transition: all .2s ease;
+}
+
+.boxes .box:hover {
+    font-size: 150%;
+    transform: rotate(360deg);
+    background-color: rgba(0,0,0,0.7);
+}
+
+.box-1 {
+
+    background-color: lightcoral;
+}
+
+.box-2 {
+    background-color: orange;
+}
+
+.box-3 {
+    background-color: lightseagreen;
+}
+
+.box-4 {
+    background-color: limegreen;
+}
+
+.box-5 {
+    background-color: lightcoral;
+}
+
+.box-6 {
+    background-color:orange;
+}
+
+.box-7 {
+    background-color:lightseagreen;
+}
+
+.box-8 {
+    background-color: limegreen;
+}
+
+.box-9 {
+    background-color: lightcoral;
+}
+
+.round-div-1 {
+    width: 150px;
+    height: 150px;
+    background-image: linear-gradient(135deg,black,lightblue,black);
+    background-color: #46b8da;
+    opacity: 0.7;
+    position: absolute;
+    left: 25%;
+    margin-left: -75px;
+    top: 90px;
+}
+.overlay
+{
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -45px 0 0 -45px;
+    border-radius: 100px;
+    text-align: center;
+    line-height: 90px;
+    width: 90px;
+    height: 90px;
+    text-decoration: none;
+    color:white;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.round-div-2{
+    position: absolute;
+    left: 75%;
+    margin-left: -75px;
+    top: 90px;
+    width: 150px;
+    background-image: linear-gradient(135deg,black,lightblue,black);
+    background-color: #46b8da;
+    height: 150px;
+    opacity: 0.7;
+}
+.round-div-3{
+    position: absolute;
+    left: 25%;
+    margin-left: -75px;
+    top: 270px;
+    width: 150px;
+    background-image: linear-gradient(135deg,black,lightblue,black);
+    background-color: #46b8da;
+    height: 150px;
+    opacity: 0.7;
+}
+.round-div-4{
+    position: absolute;
+    left: 75%;
+    margin-left: -75px;
+    top: 270px;
+    width: 150px;
+    background-image: linear-gradient(135deg,black,lightblue,black);
+    background-color: #46b8da;
+    height: 150px;
+    opacity: 0.7;
+}
+.width-li{
+    width: 50%;
+    text-align: center;
+    background-color:#b2e2fa;
+    font-weight: 700;
+}
+.input-heigh{
+    height: 50px;
+}
+.add{
+    font-weight: 700;
+    color: white;
+    padding: 10px;
+    background-color:black;
+    opacity:0.7;
+    width: 30px;
+    line-height: 10px;
+    height: 30px;
+    border-radius:20px;
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <title>test</title>
+</head>
+<body>
+<p>用户抽奖</p>
+<form method="post">
+	<button type="submit" style="background-color: #18a8df;width: 100px;height: 100px">抽奖</button>
+</form>
+
+<p>管理员设置抽奖规则</p>
+<form method="post" action="/admin/awardSetL">
+    <p>现场抽奖</p>
+</br>
+<lable>按人数抽奖人数<input type="text" name="liveAwardNum_0" /></lable>
+    <lable>奖品<input type="text" name="livePrize_0" /></lable>
+</br>
+    <lable>一等奖人数<input type="text" name="liveAwardNum_1" /></lable>
+    <lable>奖品<input type="text" name="livePrize_1" /></lable>
+</br>
+    <lable>二等奖人数<input type="text" name="liveAwardNum_2" /></lable>
+    <lable>奖品<input type="text" name="livePrize_2" /></lable>
+</br>
+    <lable>三等奖人数<input type="text" name="liveAwardNum_3" /></lable>
+    <lable>奖品<input type="text" name="livePrize_3" /></lable>
+</br>
+<button type="sublime">确定</button>
+</form>
+<form method="post" action="/admin/awardSetU">
+   <p>用户抽奖</p>
+</br>
+    <lable>一等奖概率<input type="text" name="probability_1" /></lable>
+    <lable>奖品数量<input type="text" name="award_num_1" /></lable>
+    <lable>奖品<input type="text" name="prize_1" /></lable>
+</br>
+    <lable>二等奖概率<input type="text" name="probability_2" /></lable>
+    <lable>奖品数量<input type="text" name="award_num_2" /></lable>
+    <lable>奖品<input type="text" name="prize_2" /></lable>
+</br>
+    <lable>三等奖概率<input type="text" name="probability_3" /></lable>
+    <lable>奖品数量<input type="text" name="award_num_3" /></lable>
+    <lable>奖品<input type="text" name="prize_3" /></lable>
+</br>
+    <button type="sublime">确定</button>
+</form>
+<script>
+     var result = <%= result %>
+     console.log(result);
+    	if(result == 1){
+    		alert('恭喜，您已获得一等奖');
+    	}else if(result == 2){
+    		alert('恭喜，您已获得二等奖');
+    	}else if(result == undefined){
+
+    	}else if(result == 3){
+            alert('恭喜，您已获得三等奖');
+        }else{
+            alert('很遗憾，您没有中奖');
+        }
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!--日程规划-->
+<%- include admin-header %>
+<%- include admin-mleft %>
+
+<% var j = 0; %>
+<% days.forEach(function(day){%>
+			<p>日期</p><p><%= day %></p>
+			<% console.log(day);%>
+			<% console.log(j);%>
+			<% for(var i in meetingschedule)(function(){ %>
+							<% if(i == 'meetingDay'){%>
+							<%}else{%>
+							<% var m = 0; %>
+							<% while(m < meetingschedule[i].length){ %>
+							<p><%= meetingschedule[i][m] %></p>
+							<% console.log(meetingschedule[i][m]);%>
+							<% m++; %>
+							<% console.log(m);%>
+							<% console.log('m');%>
+							<%}%>
+							<%}%>
+			<%})();%>
+<% j++; %>
+<%})%>
+
+
+<%- include admin-footer %>

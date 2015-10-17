@@ -1,0 +1,57 @@
+
+<%- include header1 %>
+
+<body>
+    <div data-am-widget="tabs"
+       class="am-tabs am-tabs-default">
+      <ul class="am-tabs-nav am-cf wrap">
+      <li class="am-active" style="display: none"><a href="[data-tab-panel-0]"></a></li>
+      <% var l = 1; %>
+      <% days.forEach(function(day){%>
+      <li class=""><a href="[data-tab-panel-<%= l %>]"><%= day %></a></li>
+      <% l++; %>
+      <% console.log(l) %>
+      <%})%>
+          
+      </ul>
+      <div class="am-tabs-bd">
+          <div data-tab-panel-0 class="am-tab-panel am-active wrap">
+          </div>
+        <% var j = 0; %>
+        <% days.forEach(function(day){%>
+        <div data-tab-panel-<%= j+1 %> class="am-tab-panel" align="center">
+              <div class="am-g">
+              <div class="am-u-sm-4">时间</div>
+              <div class="am-u-sm-4">主讲人</div>
+              <div class="am-u-sm-4">题目</div>
+              <hr data-am-widget="divider" style="" class="am-divider am-divider-default hrStyle"/>
+              </div>
+              <% for(var i in meetingschedule)(function(){ %>
+                      <% if(i == 'meetingDay'){%>
+                      <%}else{%>
+                      <% var m = 0; %>
+                      <%if(i.length == j+1){%>
+                      <% while(m < meetingschedule[i].length){ %>
+                      <div class="am-g">
+                      <div class="am-u-sm-4"><%= meetingschedule[i][m] %>-<%= meetingschedule[i][m+1] %></div>
+                      <div class="am-u-sm-4"><%= meetingschedule[i][m+2] %></div>
+                      <div class="am-u-sm-4"><%= meetingschedule[i][m+3] %></div>
+                      <hr data-am-widget="divider" style="" class="am-divider am-divider-default hrStyle" />
+                      </div>
+                      <% m=m+4; %>
+                      <%}%>
+                      <%}%>
+                      <%}%>
+              <%})();%>
+        </div>
+        <% j++; %>
+        <%})%>
+      </div>
+  </div>
+
+
+<%- include footer1 %>
+
+
+	
+	

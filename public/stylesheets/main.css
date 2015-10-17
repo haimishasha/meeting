@@ -1,0 +1,37 @@
+a {
+    color: #00B7FF;
+}
+.black{
+    background-color: black;
+    opacity: 0.7;
+}
+.hp{
+
+    overflow: hidden;
+    background-color: black;
+}
+.background{
+    background-color: #cf2d27;
+    background-image: url("../wx/1.jpg");
+    background-position: top center;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height:500px;
+    _height:500px;
+}
+.guagua, .guaguap{
+    position: absolute;
+    width: 110px;
+    height: 60px;
+    border-width: 4px;
+    border-color: black;
+    border-style: dashed;
+    font-size: xx-large;
+    font-weight: 800;
+    top: 55%;
+    left: 55%;
+    transform: rotate(-20deg);
+}
+.guaguap{
+    background-color: #777777;
+}

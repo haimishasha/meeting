@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://wxq.poodo.com.cn/pc/home.do -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>微信墙大屏幕</title>
+    <!--公共样式-->
+    <link rel="stylesheet" href="http://wxq.poodo.com.cn/wxscreen/web/common/css/commonV1.0.css">
+    <link rel="stylesheet" href="http://wxq.poodo.com.cn/wxscreen/web/common/css/headerV1.0.css">
+    <link rel="stylesheet" href="http://wxq.poodo.com.cn/wxscreen/web/common/css/footerV1.0.css">
+    <link rel="stylesheet" href="http://wxq.poodo.com.cn/wxscreen/web/common/css/layerV1.0.css">
+    <link rel="stylesheet" href="http://wxq.poodo.com.cn/wxscreen/web/common/css/tooltipster.css">
+    <script>
+      var screenArr = new Array(); //各墙头部信息
+    </script>
+    <!--默认皮肤-->
+    <link id="skincss" rel="stylesheet" href="http://wxq.poodo.com.cn/wxscreen/web/skin/css/Valentine_3V1.0.css">
+    <style id="customerStyle">
+    </style>
+    <!--库文件-->
+    <script src="/wx/jquery-1.8.3.min.js"></script>
+    <script src="/wx/footerV1.0.js"></script>
+    <script src="/wx/wxWallV1.0.js"></script>
+    <script>
+      window.onresize = function () { 
+        $('#wrap').height($(window).height());
+        $('#wrap').width($(window).width());
+      };//窗口大小改变
+    </script>
+    <!-- 公用初始化 -->
+    <!--<script src="/wx/wxWallV1.0.js"></script>-->
+    <!--抽奖-->
+    <link rel="stylesheet" href="http://wxq.poodo.com.cn/wxscreen/web/css/lotteryWallV1.0.css">
+    <script src="/wx/luck.js"></script>
+  </head>
+  <body style="zoom: 1;">
+    <input id="checkTime" type="hidden" value="1443407605">
+    <input id="signUpdateTime" type="hidden" value="1443407568">
+    <input id="sayUpdateTime" type="hidden" value="1443407568">
+    <input id="noScreen" type="hidden" value="">
+    <div id="wrap" class="wrapBg">
+      <div id="whole">
+        <div class="loader" style="display: none;">Loading...</div>
+        <!--页首开始-->
+        <div class="header clearfix">
+         <!--  <h3 style="width:210px;height:52px;"><img id="logurl" name="home.logurl" src="" width="210" height="52"></h3> -->
+          <div class="wordScroll">
+            <div class="scrollBox colorStyle">
+              <ul>
+              <p id="title"><li>签到成功后，即可参与抽奖啦~<br></li></p>
+              </ul>
+            </div>
+            <div class="num colorStyle">
+              <p><span id="countP"><%= signers_length %>人签到</span></p>
+            </div>
+          </div>
+          <div class="QRcode" onclick="openQRcodeWall();" style="cursor: pointer">
+          <img id="wscode" name="home.qrurl" src="/images/erweima.jpg" width="95" height="95">
+          </div>
+        </div>
+        <!--页首结束-->
+        <div id="container">
+          
+          <!--签到开始-->
+          <div id="siginWall" class="contBox siginWall borderStyle" style="display: none;">
+            <ul id="signlist">
+              <% signers.forEach(function(signer){ %>
+              <li id=<%= signer.openid %> class="user-had">
+                      <div class="play bounceIn">
+                        <input type="hidden" name="p1" value="<%= signer.nickname %>|1|<%= signer.headimgurl %>|<%= signer.openid %>">
+                      <div class="avatar"><img src=<%= signer.headimgurl %>><p>Hgg</p></div>
+                      <div class="siginWords wordsRight">
+                        <i class="leftside"></i>
+                            <p> 签到 刘德华 </p>
+                      </div>
+                    </div>
+                  </li>
+              <%})%>
+          </ul>
+          </div>
+          <!--签到结束-->
+  
+          <!--抽奖开始-->
+  <div class="contBox lotteryWall clearfix" id="lotteryWall" style="display: block;">
+            <div class="lotteryBox">
+              <div class="lotteryTit clearfix colorStyle">
+                <span class="contIcon" id="luckTitle">现场抽奖</span>
+                <p>参加抽奖人数<em id="may_num"><%= signers_length %></em></p>
+              </div>
+              <dl class="lotteryPerson colorStyle">
+                <dt><img src="/wx/lotteryDefault.png" id="luck_img"></dt>
+                <dd id="luck_name"></dd>
+              </dl>
+              <table width="472" border="0" cellpadding="0" cellspacing="0">
+                <tbody><tr>
+                  <td align="left">
+                    <p>
+                      <select name="luckTag" id="tagid" class="selStyle sel180" onchange="changeLuck(this.value);">
+                      <option value="-1">--请选择奖项--</option>
+                      <option value="1">一等奖</option><option value="2">二等奖</option><option value="3">三等奖</option><option value="0">按人数抽奖</option></select>
+                    </p>
+                    <div id="num_input" style="display:none"><!--按人数抽奖输入项-->
+                      <p id="prizeName"><input type="text" id="comment" placeholder="抽奖前请备注奖品" class="txtStyle txt180" maxlength="7"></p>
+                      <p class="colorOne" id="prizeNum">
+                        一次抽取               
+                        <select id="num" name="" class="selStyle sel80">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+                          <option value="13">13</option>
+                          <option value="14">14</option>
+                          <option value="15">15</option>
+                          <option value="16">16</option>
+                          <option value="17">17</option>
+                          <option value="18">18</option>
+                          <option value="19">19</option>
+                          <option value="20">20</option>
+                        </select>
+                        人
+                      </p>
+                    </div>
+                  </td>
+                  <td align="right">
+                    <p id="tag_flag">
+                      <input type="button" id="startBtn" class="btnStyle btn255" onclick="startBtn();" value="开始抽奖">
+                      <input type="button" style="display:none" id="endBtn" value="结束抽奖" class="btnStyle btn255" onclick="endBtn();">
+                    </p>
+                    <p id="num_flag" style="display:none">
+                      <input type="button" id="startNum" value="开始抽奖" class="btnStyle btn255" onclick="start();"><!--startNum/endNum-->
+                      <input type="button" id="endNum" value="结束抽奖" class="btnStyle btn255" onclick="stop();">
+                    </p>
+                  </td>
+              </tr></tbody></table>
+            </div>
+            <input type="hidden" id="meetingId" value=<%= meetingId %>><!--奖项活动id-->
+            <input type="hidden" id="luckid" value="1"><!--奖项活动id-->
+            <input type="hidden" id="luckname" value=""><!--保存奖项名称-->
+            <input type="hidden" id="tagExclude" value="1"><!--按奖项抽奖是否可以重复中奖-->
+            <input type="hidden" id="tagNum" value=""><!--按奖项抽奖人数-->
+            <input type="hidden" id="numExclude" value="1"><!--按人数抽奖是否可以重复中奖-->
+            <div class="lotteryResult theResult">
+              <div class="lotteryCont">
+                <h3 class="clearfix"><p>获奖人数<em id="lucknum">0</em></p>获奖名单</h3>
+                <div class="lotterys">
+                  <div class="lotteryInfo">
+                    <span>序号</span>
+                    <span class="dot">获奖人</span>
+                    <span>奖项</span>
+                  </div>
+                  <div class="lotteryName">
+                    <div class="lotteryDefault">
+                    点击按钮，开始抽奖吧！
+                    </div>
+                    <ul id="luck_index">
+                    <p id="lotteryName"></p>
+                    </ul>
+                  </div>
+                  <div class="lotteryBtn"><input type="button" id="newLuckButton" value="重新抽奖" class="btnStyle btn90" onclick="javascript:reset();"></div><!--showLayer(4)-->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--抽奖结束-->
+          <!--二维码-->
+          <div class="QRcodeBox" style="display: none;">
+            <h3>使用微信扫描以下二维码，关注后发送相关内容即可参与微信墙活动</h3>
+            <a href="javascript:void(0);" onclick="closeQrcodeWall();" class="codeClose"></a>
+            <p><img id="bigQrurl" src="/images/erweima.jpg" alt=""></p>
+          </div>
+        </div>
+        <!--页尾开始-->
+        <div id="tabMenu" class="footer clearfix">
+            <div class="btnIcon btnMenu menuStyle" style="margin:0 0 0 20px;">
+              <!-- <img id="logurl" name="home.logurl" src="/wx/puduzaixian_log.png" width="130" height="35"> -->
+            </div>
+          <div class="btnIcon btnMenu menuStyle" style="margin:0 25px;">
+            <a href="javascript:void(0)" data-class="skinSelect" class="btnSkinSel tooltipstered tooltip"></a>
+            <a href="javascript:void(0)" data-class="siginWall" class="btnCheckIn tooltipstered tooltip"></a>
+            <a href="javascript:void(0)" data-class="msgWall" class="btnTheWall tooltipstered tooltip"></a>
+            <a href="javascript:void(0)" data-class="lotteryWall" class="btnLottery tooltipstered tooltip"></a>
+            <a href="javascript:void(0)" data-class="voteWall" class="btnVote tooltipstered tooltip"></a>
+            <a href="javascript:void(0)" data-class="pairWall" class="btnPair tooltipstered tooltip"></a>
+            <a href="javascript:void(0)" onclick="progressInteract();" data-class="onSiteWall" class="btnOnSite tooltipstered tooltip"></a>
+            <a href="javascript:void(0)" data-class="fullWall" class="btnFull tooltipstered tooltip" onclick="fullScreen(document.documentElement)"></a>
+          </div>
+          <div class="btnIcon btnAct menuStyle" style="margin:0 18px 0 24px;">
+            <a href="javascript:void(0)" class="btnOldest tooltip tooltipstered" onclick="wallPage(&#39;min&#39;)"></a>
+            <a href="javascript:void(0)" class="btnPrev tooltip tooltipstered" onclick="wallPage(&#39;last&#39;)"></a>
+            <a href="javascript:void(0)" class="btnPause tooltip tooltipstered" id="but_play" onclick="wallPage(&#39;play&#39;)"></a>
+            <!--<a href="javascript:void(0)" class="btnPlay tooltip" onClick="openSay()"></a>-->
+            <a href="javascript:void(0)" class="btnNext tooltip tooltipstered" onclick="wallPage(&#39;next&#39;)"></a>
+            <a href="javascript:void(0)" class="btnNewest tooltip tooltipstered" onclick="wallPage(&#39;max&#39;)"></a>
+          </div>
+        </div>              
+        <!--页尾结束-->
+      </div>
+    </div>
+    
+    <!--抽奖弹框-->
+    <div class="layerStyle layer360" id="layer1">
+      <h3><span class="layerClose" onclick="closeLayer(this)"></span>温馨提示</h3>
+      <div class="layerTxt">亲，您还没有选择奖项，请先选择奖项，再开始抽奖！</div>
+      <div class="layerBtn">
+        <input type="button" id="" value="确定" class="btnTxt btnSure" onclick="closeLayer(this)">
+        <input type="button" id="" value="取消" class="btnTxt btnSure" onclick="closeLayer(this)">
+      </div>
+    </div>
+    
+    <div class="layerStyle layer360" id="layer2">
+      <h3><span class="layerClose" onclick="closeLayer(this)"></span>温馨提示</h3>
+      <div class="layerTxt">亲，确定删除中奖者吗？删除后将不可恢复此记录！</div>
+      <div class="layerBtn">
+        <input type="button" id="" value="确定" class="btnTxt btnSure" onclick="closeLayer(this)">
+        <input type="button" id="" value="取消" class="btnTxt btnSure" onclick="closeLayer(this)">
+      </div>
+    </div>
+    
+    <div class="layerStyle layer360" id="layer3">
+      <h3><span class="layerClose" onclick="closeLayer(this)"></span>温馨提示</h3>
+      <div class="layerTxt">亲，当前奖项已经抽满人数，不能再进行抽奖！</div>
+      <div class="layerBtn">
+        <input type="button" id="" value="返回" class="btnTxt btnSure" onclick="closeLayer(this)">
+      </div>
+    </div>
+    
+    <div class="layerStyle layer360" id="layer4">
+      <h3><span class="layerClose" onclick="closeLayer(this)"></span>温馨提示</h3>
+      <div class="layerTxt">亲，重置抽奖用户会重新放入奖池，确定要重置吗？</div>
+      <div class="layerBtn">
+        <input type="button" id="" value="确定" class="btnTxt btnSure" onclick="closeLayer(this)">
+        <input type="button" id="" value="取消" class="btnTxt btnSure" onclick="closeLayer(this)">
+      </div>
+    </div>
+    <div class="layerStyle layer360" id="layer6">
+      <h3><span class="layerClose" onclick="closeLayer(this)"></span>温馨提示</h3>
+      <div class="layerTxt">可抽奖人数为0！不能再进行抽奖</div>
+      <div class="layerBtn">
+        <input type="button" id="" value="返回" class="btnTxt btnSure" onclick="closeLayer(this)">
+      </div>
+    </div>
+    <div class="layerStyle layer360" id="layer7">
+      <h3><span class="layerClose" onclick="closeLayer(this)"></span>温馨提示</h3>
+      <div class="layerTxt">全部人数已经抽奖完毕！</div>
+      <div class="layerBtn">
+        <input type="button" id="" value="确定" class="btnTxt btnSure" onclick="closeLayer(this)">
+      </div>
+    </div>
+    <!--对对碰-->
+    <div class="layerStyle layer360" id="diagpeng">
+      <h3><span class="layerClose"></span>温馨提示</h3>
+      <div class="layerTxt txtCenter">亲，确定要拆散这对有缘人？</div>
+      <div class="layerBtn">
+        <input type="button" id="" value="确定" class="btnTxt btnSure">
+        <input type="button" id="" value="取消" class="btnTxt btnSure" onclick="closeLayer(this)">
+      </div>
+    </div>  
+        <!--对对碰全部清空-->
+    <div class="layerStyle layer360" id="clearall">
+      <h3><span class="layerClose"></span>温馨提示</h3>
+      <div class="layerTxt txtCenter">亲，确定要全部清空么?</div>
+      <div class="layerBtn">
+        <input type="button" id="" value="确定" class="btnTxt btnSure">
+        <input type="button" id="" value="取消" class="btnTxt btnSure" onclick="closeLayer(this)">
+      </div>
+    </div>  
+      <!--对对碰清空一个-->
+  <div class="layerStyle layer360" id="clearpeng1">
+    <h3><span class="layerClose"></span>温馨提示</h3>
+    <div class="layerTxt txtCenter">亲，确定要全部清空么?</div>
+    <div class="layerBtn">
+      <input type="button" id="" value="确定" class="btnTxt btnSure">
+      <input type="button" id="" value="取消" class="btnTxt btnSure" onclick="closeLayer(this)">
+    </div>
+  </div>  
+            <!--现场互动全部清空-->
+    <div class="layerStyle layer360" id="clearhudong">
+      <h3><span class="layerClose"></span>温馨提示</h3>
+      <div class="layerTxt txtCenter">亲，确定要全部清空么?</div>
+      <div class="layerBtn">
+        <input type="button" id="" value="确定" class="btnTxt btnSure">
+        <input type="button" id="" value="取消" class="btnTxt btnSure" onclick="closeLayer(this)">
+      </div>
+    </div>  
+    <!--现场互动清空一个-->
+    <div class="layerStyle layer360" id="clearhudong1">
+      <h3><span class="layerClose"></span>温馨提示</h3>
+      <div class="layerTxt txtCenter">亲，确定要清除该项么?</div>
+      <div class="layerBtn">
+        <input type="button" id="" value="确定" class="btnTxt btnSure">
+        <input type="button" id="" value="取消" class="btnTxt btnSure" onclick="closeLayer(this)">
+      </div>
+    </div>
+    <!--chrome提示条-->
+    <div class="chromeTip" style="display: none;">
+      为了更好展现微信墙功能，让您获得更好的用户体验，建议您使用<a href="http://www.google.cn/intl/zh-CN/chrome/browser/" target="_blank">Chrome浏览器</a>。<a class="chromeBtn" href="http://www.google.cn/intl/zh-CN/chrome/browser/" target="_blank"></a>
+      <span class="closeIcon"></span>
+    </div>
+  
+</body></html>

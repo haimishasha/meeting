@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>绑定成功</title>
+    <link rel="stylesheet" href="/signin/signin/app.min.css?a=1">
+    <link rel="stylesheet" href="/signin/signin/page_login26f6ea.css">
+    <!-- <link rel="stylesheet" href="bootstrap-3.3.5/dist/css/bootstrap.min.css"> -->
+
+
+  </head>
+  <body>
+    <!-- main开始 -->
+    <div class="pageBg login_frame" style="background: url(/signin/signin/20150929133002_34806.jpg); background-size:100% 100%">
+        <br>
+        <h3>绑定会议编号</h3>
+        <div class="login_err_panel" style="display:none;" id="err"> </div>
+        <form method="post" class="login_form" id="loginForm">
+            <div class="login_input_panel" id="js_mainContent">
+              <br>
+                <label for="doc-vld-name-2">设备id：</label>
+              </br>
+              <br>
+                <div class="login_input">
+                    <input type="text" id="doc-vld-name-2" placeholder="<%= iBeaconid%>"name="iBeaconid">
+                </div>
+              </br>
+              
+                <label for="doc-vld-password-1">会议编号</label>
+               <br>
+              <br>
+                <div class="login_input">    
+                    <input type="text" id="doc-vld-name-2" placeholder="" name="mid">
+                </div>
+              </br>
+            </div>
+          
+            <div class="login_help_panel">
+            </div>
+            <div class="login_btn_panel">
+              <button type="submit" class="am-btn am-btn-primary  am-btn-block btn_login">确认绑定</button>
+            </div>
+        </form>
+      </div>  
+  </body>
+</html>

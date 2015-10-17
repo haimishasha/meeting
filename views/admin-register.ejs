@@ -1,0 +1,42 @@
+<%- include admin-header %>
+<div style="width: 700px;position: absolute;left: 50%;margin-left: -350px;margin-top:20px">
+    <form method="post" action="" class="am-form" data-am-validator>
+        <fieldset>
+            <legend id="reg-id">注册</legend>
+            <div class="am-form-group">
+                <label for="doc-vld-name-2">用户名：</label>
+                <input type="text" id="doc-vld-name-1" name="username" minlength="3" placeholder="输入用户名（至少 3 个字符）" />
+            </div>
+
+            <div class="am-form-group">
+                <label for="doc-vld-email-2">邮箱：</label>
+                <input type="email" id="doc-vld-email-2" name="email" placeholder="输入邮箱" required/>
+            </div>
+            <div class="am-form-group">
+                <label for="doc-vld-telephone-2">联系方式：</label>
+                <input type="text" class="" id="doc-vld-telephone-2" name="connect" placeholder="输入手机号码 "
+                       required/>
+            </div>
+            <div class="am-form-group" id="sex">
+                <label>性别： </label>
+                <label class="am-radio-inline">
+                    <input type="radio" value="1" name="docVlGender" required> 男
+                </label>
+                <label class="am-radio-inline">
+                    <input type="radio" value="0" name="docVlGender"> 女
+                </label>
+            </div>
+            <div class="am-form-group">
+                <label for="doc-vld-password-1">密码：</label>
+                <input type="password" class="" id="doc-vld-password-1" name="password" placeholder="输入密码"
+                       required/>
+            </div>
+            <div class="am-form-group">
+                <label for="doc-vld-password-2">再次确认密码：</label>
+                <input type="password" class="" id="doc-vld-password-2" placeholder="再次输入密码" data-equal-to="#doc-vld-password-1" required/>
+            </div>
+            <button class="am-btn am-btn-secondary" type="button" onclick="reg()">注册</button>
+        </fieldset>
+    </form>
+</div>
+<%- include admin-footer %>

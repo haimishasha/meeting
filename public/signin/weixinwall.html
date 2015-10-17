@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<!-- saved from url=(0082)http://wxq.poodo.com.cn/pc/home.do;JSESSIONID=0fb4a273-1699-4d51-8b1a-958142c4fee3 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>微信墙大屏幕</title>
+		<!--公共样式-->
+		<link rel="stylesheet" href="./weixinwall_files/commonV1.0.css">
+		<link rel="stylesheet" href="./weixinwall_files/headerV1.0.css">
+		<link rel="stylesheet" href="./weixinwall_files/footerV1.0.css">
+		<link rel="stylesheet" href="./weixinwall_files/layerV1.0.css">
+		<link rel="stylesheet" href="./weixinwall_files/tooltipster.css">
+		<script>
+			var screenArr = new Array(); //各墙头部信息
+		</script>
+		<!--默认皮肤-->
+		<link id="skincss" rel="stylesheet" href="./weixinwall_files/defaultV1.0.css">
+		<style id="customerStyle">
+		</style>
+		<!--库文件-->
+		<script src="./weixinwall_files/jquery-1.8.3.min.js"></script>
+		<script src="./weixinwall_files/jquery.tooltipster.min.js"></script>
+		<script src="./weixinwall_files/footerV1.0.js"></script>
+		<script src="./weixinwall_files/headerV1.0.js"></script>
+		<script src="./weixinwall_files/chromeTip.js"></script>
+		<script src="./weixinwall_files/strUtil.js"></script>
+		<script>
+			window.onresize = function () { 
+				$('#wrap').height($(window).height());
+				$('#wrap').width($(window).width());
+			};//窗口大小改变
+		</script>
+		<!-- 公用初始化 -->
+		<script src="./weixinwall_files/wxWallV1.0.js"></script>
+		<!--签到-->
+		<link rel="stylesheet" href="./weixinwall_files/animate.css">
+		<link rel="stylesheet" href="./weixinwall_files/siginWallV1.0.css">
+		<!--风格-->
+		<link rel="stylesheet" href="./weixinwall_files/skinSelectV1.0.css">
+			<!--<script src="/wxscreen/web/js/skinCheckV1.0.js" ></script>-->
+		<!--留言墙-->
+		<link rel="stylesheet" href="./weixinwall_files/msgWallV1.0.css">
+		<!--<script src="/wxscreen/web/js/msgWallV1.0.js" ></script>-->
+		<!--抽奖-->
+		<link rel="stylesheet" href="./weixinwall_files/lotteryWallV1.0.css">
+		<script src="./weixinwall_files/luck.js"></script>
+		<!--投票-->
+		<link rel="stylesheet" href="./weixinwall_files/voteWallV1.0.css">
+		<script src="./weixinwall_files/voteWallV1.0.js"></script>
+		<!--对对碰-->
+		<link rel="stylesheet" href="./weixinwall_files/pairWallV1.0.css">
+		<script src="./weixinwall_files/pairWallV1.js"></script>
+		<!--现场互动-->
+		<script src="./weixinwall_files/interact.js"></script>
+	</head>
+	<body onload="init()">
+		<input id="checkTime" type="hidden" value="1443341311">
+		<input id="signUpdateTime" type="hidden" value="1443338963">
+		<input id="sayUpdateTime" type="hidden" value="1443338963">
+		<input id="noScreen" type="hidden" value="">
+		<div id="wrap" class="wrapBg" style="height: 623px; width: 1361px;">
+			<div id="whole">
+				<div class="loader" style="display: none;">Loading...</div>
+				<!--页首开始-->
+				<div class="header clearfix">
+					<h3 style="width:210px;height:52px;"><img id="logurl" name="home.logurl" src="./weixinwall_files/af618a5322e44c579676f3cfe2c890e8.png" width="210" height="52"></h3>
+					<div class="wordScroll">
+						<div class="scrollBox colorStyle">
+							<ul>
+							<p id="title"><li>发送关键字“我要上墙”，您发的信息<br>就可以显示到大屏幕上啦~</li></p>
+							</ul>
+						</div>
+						<div class="num colorStyle">
+							<p><span id="countP">166条发言</span></p>
+						</div>
+					</div>
+					<div class="QRcode" onclick="openQRcodeWall();" style="cursor: pointer">
+					<img id="wscode" name="home.qrurl" src="./weixinwall_files/47a17569328c43518fd8bb779e8b391a.png" width="95" height="95">
+					</div>
+				</div>
+				<!--页首结束-->
+				<div id="container">
+					<!--风格开始-->
+<div id="skinSelect" class="contBox skinSelect clearfix" style="display: none;">
+	<div class="skinMenu">
+		<h3>大屏幕风格</h3>
+		<p><img src="./weixinwall_files/skinIcon.png"></p>
+		<ul>
+			<li class="cur"><a href="javascript:void(0)" onclick="showShinBox(&#39;all&#39;,this)">所有风格</a></li>
+		</ul>
+	</div>
+	<div class="skinBox" id="all">
+		<ul>
+			<li class="check"><img type="1" src="./weixinwall_files/defaultV1.0.jpg" cssfile="defaultV1.0.css">
+				<p><span>默认风格</span></p>
+			</li>
+			<li><img type="1" src="./weixinwall_files/LanternFestival_1V1.0.jpg" cssfile="LanternFestival_1V1.0.css">
+				<p><span>元宵节</span></p>
+			</li>
+			<li><img type="1" src="./weixinwall_files/SpringFestival_1V1.0.jpg" cssfile="SpringFestival_1V1.0.css">
+				<p><span>春节1</span></p>
+			</li>
+			<li><img type="1" src="./weixinwall_files/SpringFestival_2V1.0.jpg" cssfile="SpringFestival_2V1.0.css">
+				<p><span>春节2</span></p>
+			</li>
+			<li><img type="1" src="./weixinwall_files/SpringFestival_3V1.0.jpg" cssfile="SpringFestival_3V1.0.css">
+				<p><span>春节3</span></p>
+			</li>
+			<li><img type="1" src="./weixinwall_files/Valentine_1V1.0.jpg" cssfile="Valentine_1V1.0.css">
+				<p><span>情人节1</span></p>
+			</li>
+			<li><img type="1" src="./weixinwall_files/Valentine_2V1.0.jpg" cssfile="Valentine_2V1.0.css">
+				<p><span>情人节2</span></p>
+			</li>
+			<li><img type="1" src="./weixinwall_files/Valentine_3V1.0.jpg" cssfile="Valentine_3V1.0.css">
+				<p><span>情人节3</span></p>
+			</li>
+			<li><img type="1" src="./weixinwall_files/colorRed_1V1.0.jpg" cssfile="colorRed_1V1.0.css">
+				<p><span>红色</span></p>
+			</li>
+			<li><img type="1" src="./weixinwall_files/colorBluishViolet_1V1.0.jpg" cssfile="colorBluishViolet_1V1.0.css">
+				<p><span>蓝色</span></p>
+			</li>
+			<li><img type="1" src="./weixinwall_files/colorClaret_1V1.0.jpg" cssfile="colorClaret_1V1.0.css">
+				<p><span>紫红色</span></p>
+			</li>
+			<li><img type="1" src="./weixinwall_files/Christmas_1V1.0.jpg" cssfile="Christmas_1V1.0.css">
+				<p><span>圣诞节</span></p>
+			</li>
+		</ul>
+	</div>
+	<div class="skinBox" id="holiday">
+		<ul>
+			<li class="check"><img src="./weixinwall_files/defaultV1.0.jpg" fontcss="" menucss="" btncss="" btntxtcss="" spancss="">
+				<p><span>免费</span></p>
+			</li>
+			<li><img src="./weixinwall_files/defaultV1.0.jpg" fontcss="" menucss="" btncss="" btntxtcss="" spancss="">
+				<p><span>免费</span></p>
+			</li>
+			<li><img src="./weixinwall_files/defaultV1.0.jpg" fontcss="" menucss="" btncss="" btntxtcss="" spancss="">
+				<p><span>免费</span></p>
+			</li>
+			<li><img src="./weixinwall_files/defaultV1.0.jpg" fontcss="" menucss="" btncss="" btntxtcss="" spancss="">
+				<p><span>免费</span></p>
+			</li>
+		</ul>
+	</div>
+	<div class="skinBox" id="free">
+		<ul>
+			<li class="check"><img src="./weixinwall_files/defaultV1.0.jpg" fontcss="" menucss="" btncss="" btntxtcss="" spancss="">
+				<p><span>免费</span></p>
+			</li>
+			<li><img src="./weixinwall_files/defaultV1.0.jpg" fontcss="" menucss="" btncss="" btntxtcss="" spancss="">
+				<p><span>免费</span></p>
+			</li>
+			<li><img src="./weixinwall_files/defaultV1.0.jpg" fontcss="" menucss="" btncss="" btntxtcss="" spancss="">
+				<p><span>免费</span></p>
+			</li>
+			<li><img src="./weixinwall_files/defaultV1.0.jpg" fontcss="" menucss="" btncss="" btntxtcss="" spancss="">
+				<p><span>免费</span></p>
+			</li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript" src="./weixinwall_files/skinCheckV1.0.js" style="display: none;"></script>
+					<!--风格结束-->
+					<!--签到开始-->
+					<div id="siginWall" class="contBox siginWall borderStyle" style="display: none;">
+						<ul id="signlist" style="margin-top: 0px;">
+					    			<li id="oY3c4t5FQENw8CN5YRQwcoJMQILg" class="user-had">
+					    				<div class="play flipInY">
+					    					<input type="hidden" name="p1" value="Hgg|1|http://wx.qlogo.cn/mmopen/ajNVdqHZLLBQyjZcibSA6RmRqwA01WkEmpXuu5rWASicwd6Ltp6X636h5ibsNROBCsicMey3kbLQdvBZnK3s71hyJQ/0|oY3c4t5FQENw8CN5YRQwcoJMQILg">
+											<div class="avatar"><img src="./weixinwall_files/0"><p>Hgg</p></div>
+											<div class="siginWords wordsRight">
+												<i class="leftside"></i>
+												    <p> 签到 刘德华 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t97z--C3zPG2U2Nb5hluwB8" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="李然|1|http://wx.qlogo.cn/mmopen/L0viagAD1vx11fggOBnj3Akw424I3XzalibaqGVkBLqUcyloYOj5Pb2oYA2oic7sTibDmzIQ5K1dT4cMynqfYoLM3IJNqibLAyBHw/0|oY3c4t97z--C3zPG2U2Nb5hluwB8">
+											<div class="avatar"><img src="./weixinwall_files/0(1)"><p>李然</p></div>
+											<div class="siginWords">
+												<i></i>
+													<p style="font-size:35px;">李玉鹏广汽三菱签到</p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t3xhhIK5nDthlH8pXqu0EB0" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p2" value="刘丹Mob|2|http://wx.qlogo.cn/mmopen/ajNVdqHZLLCZNOsF49XWBicCACcFCPQKuqnKDaOPSI5jeE7ggBPuOmQDaeWjvmVv6XHV0muCNmYNdN5QmqZPv45dHCYv721UxmeKRiadFXEgQ/0|oY3c4t3xhhIK5nDthlH8pXqu0EB0">
+											<div class="avatar"><img src="./weixinwall_files/0(2)"><p>刘丹Mob</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到刘丹Mob </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4txljVZPwhTUjikEdILk5lHc" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="勉|1|http://wx.qlogo.cn/mmopen/Q3auHgzwzM7X4SUUVA9pDXFvAZUPMduz7tkrPGnxXrWg7utwYeNA7JvlfarqB3vUe6XcibmJtlSPicqDfLzFk8Mg/0|oY3c4txljVZPwhTUjikEdILk5lHc">
+											<div class="avatar"><img src="./weixinwall_files/0(3)"><p>勉</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到来了 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t8EDH8B5ELn5UNLl-s4th5M" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="联想or苹果 |1|http://wx.qlogo.cn/mmopen/50GZZAasxTm6QDhCCMQGsbpq58wyQTuSe7nuibWnyzCFI1JiaXAugxaKeKa9jEnwxGDaVRBRiclhf6aocFfxibeP7f3XCPw61icc6/0|oY3c4t8EDH8B5ELn5UNLl-s4th5M">
+											<div class="avatar"><img src="./weixinwall_files/0(4)"><p>联想or苹果 </p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到沈丘联想 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t9tRiYRoo6z1rHKPuZ0UJLA" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="木植|1|http://wx.qlogo.cn/mmopen/y5RpFDuUObz9Y4Me3QrcBCEPSa18BgjzClqeMsiaxkPf2hDD5icO6AL4Suk6xXsCQ6yEIibOcdCHstLXd972k2Qb3WicpsbGdnMS/0|oY3c4t9tRiYRoo6z1rHKPuZ0UJLA">
+											<div class="avatar"><img src="./weixinwall_files/0(5)"><p>木植</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 Cc </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t3d4y8Pfdrv512kEvMhi2QM" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="Sean!凯|1|http://wx.qlogo.cn/mmopen/L0viagAD1vx11fggOBnj3AhqiafLWYFfX6TrX6qiavU8u0PzJFBrdQPe1Ksj7kVgIvj0icnFGuBctNMJHl6f3GDXSeZuZibLKCNx6/0|oY3c4t3d4y8Pfdrv512kEvMhi2QM">
+											<div class="avatar"><img src="./weixinwall_files/0(6)"><p>Sean!凯</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到sean </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4ty1VIbOQ_kLEAVpUu41lRO8" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p2" value="weiberry|2|http://wx.qlogo.cn/mmopen/50GZZAasxTm6QDhCCMQGsRH8vlwBIRhP7W79KicsCyNGXcmjoFYB1OCbvnVpumuDuoSAKWYpvzH89M9P2NsMKlC5mpnY9SRaP/0|oY3c4ty1VIbOQ_kLEAVpUu41lRO8">
+											<div class="avatar"><img src="./weixinwall_files/0(7)"><p>weiberry</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到大魏魏 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t0pcTjWzDzHVVZpqZQYn_zU" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="森|1|http://wx.qlogo.cn/mmopen/evVibIjIJ3iaUsHqW6zpJe0myzr48wQ32GBuoV4Qa8ls1q19SJRWib1YiceicC1oTbd1S18ia2h2kgYEkrUU4SZ6rZbc5NhVQF9yvh/0|oY3c4t0pcTjWzDzHVVZpqZQYn_zU">
+											<div class="avatar"><img src="./weixinwall_files/0(8)"><p>森</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到爱丽 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4txFKufNY2k0etlQ0RSGdHWE" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p2" value="鸿霖君|2|http://wx.qlogo.cn/mmopen/50GZZAasxTliaOlTQnUU2pjq0NOBfTpq5avFUdFyFlGcc3TBqH8YSIaopmeIZs559uR5xqUz5a3wpjo9n2WdYriaVxpECtWjRB/0|oY3c4txFKufNY2k0etlQ0RSGdHWE">
+											<div class="avatar"><img src="./weixinwall_files/0(9)"><p>鸿霖君</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到陈丹 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t1PpbDA-eRQeVhCObfrYz2s" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p2" value="泰若|2|http://wx.qlogo.cn/mmopen/PiajxSqBRaEJnfI3SDwcdJoJZwkVu0LD2XnEjvl174LJgST9r7VNialP0nK3tKJfhUkntSnKrlByFBhstluJelJw/0|oY3c4t1PpbDA-eRQeVhCObfrYz2s">
+											<div class="avatar"><img src="./weixinwall_files/0(10)"><p>泰若</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到叶子 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4tzLPd_eZJMy_3IWcL1qqWSI" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="五味杂谈|1|http://wx.qlogo.cn/mmopen/L0viagAD1vx11fggOBnj3AgzcwSUDHPbYOfRMWzmDwMC7cYB2WkZbVU92C49SlPROEZwpyVQmedspdnS6WflEXe2kDuN465rI/0|oY3c4tzLPd_eZJMy_3IWcL1qqWSI">
+											<div class="avatar"><img src="./weixinwall_files/0(11)"><p>五味杂谈</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 小穗 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t8lJ0zobmyD6tQshJbxRTwA" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="仙人哥哥|1|http://wx.qlogo.cn/mmopen/ajNVdqHZLLBictSlYpTWvqIDq9uSSy2dgl8OWIkXqiaHdvLVyCBNfkePG45hcowf6r2NhLh7IO4c8qVhj8JWtxRQ/0|oY3c4t8lJ0zobmyD6tQshJbxRTwA">
+											<div class="avatar"><img src="./weixinwall_files/0(12)"><p>仙人哥哥</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到程井亮 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4tyUL0yR6_Cpworv9u7SfLng" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="周闪闪|1|http://wx.qlogo.cn/mmopen/evVibIjIJ3iaXx1171mkzXf6vptKwooZXsLcLrKzrsObl3TeJnO6QFicOFS29Rwiark6cia5auiboHbLRrCzNYDhNBL97rsq0ib7WDY/0|oY3c4tyUL0yR6_Cpworv9u7SfLng">
+											<div class="avatar"><img src="./weixinwall_files/0(13)"><p>周闪闪</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 闪闪 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t0nU-93AqbQzmHxR249XTVs" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="龙崎|1|http://wx.qlogo.cn/mmopen/LrGYEIgSuum1m3Aq4dbvEsAfsbZz069AJVy7PFJ7R2BnLLAjwuXLRGOU8XBFOJ006ia0ubYLBkoziaCOCJevaia54I69ljicibt6W/0|oY3c4t0nU-93AqbQzmHxR249XTVs">
+											<div class="avatar"><img src="./weixinwall_files/0(14)"><p>龙崎</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 阿城 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t5mdVKtFphPj0r0oz8qWbTc" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p2" value="侯朵💋|2|http://wx.qlogo.cn/mmopen/y5RpFDuUObwVcUTAdOd4W2uWjyRQa1DF0VHPL051AwKtZUrnNSmAbagEOL1glmZSGVINvEuzclmvH4p9J4v1nQ/0|oY3c4t5mdVKtFphPj0r0oz8qWbTc">
+											<div class="avatar"><img src="./weixinwall_files/0(15)"><p>侯朵💋</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 朵签到 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t9cU3pHbanL6kbPS3TMdoCg" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="叙雨云|1|http://wx.qlogo.cn/mmopen/evVibIjIJ3iaUsHqW6zpJe0h55EE6jJLuXOF10icUBmt1196OUfVNEwicMw2SzhIXtClMskYTDLfe9K29UUUroFQ8IMQuOtv8jqv/0|oY3c4t9cU3pHbanL6kbPS3TMdoCg">
+											<div class="avatar"><img src="./weixinwall_files/0(16)"><p>叙雨云</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到菌落 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t6g8MeE8wYN5oY1wB3bfsVc" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="A@微小区―姜昊富|1|http://wx.qlogo.cn/mmopen/Q3auHgzwzM5SNoH6vEXWR4nrz0e152WAS3twPRk4vib4606P87sWggwEpkwZ0JGGOyjicrLEW1rf1rCHQicnPPc1DNL2T408anCticsuckYg7zs/0|oY3c4t6g8MeE8wYN5oY1wB3bfsVc">
+											<div class="avatar"><img src="./weixinwall_files/0(17)"><p>A@微小区―姜昊富</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 姜昊富 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t-G_U6KJgnAOrttnESOXsQo" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p2" value="明月|2|http://wx.qlogo.cn/mmopen/50GZZAasxTm6QDhCCMQGsTibU8vCbZFwhnI0AVMsUfaPlLjD1FLveNZe4Lly1qW0BhicfQhmHwJD6I7dSg1Vvl8qLMkGAIibvxl/0|oY3c4t-G_U6KJgnAOrttnESOXsQo">
+											<div class="avatar"><img src="./weixinwall_files/0(18)"><p>明月</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到任明月 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t0YaFrWQmRokDpcu3ZokM6k" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p2" value="💋 * 杨铮铮 、🎉|2|http://wx.qlogo.cn/mmopen/4amiczxrLNNCV7cmfQ271TriaZtnJbPRGciawuOl7kCUdBECYu3fLjAOicDQ7V0CwVoFHyiaKQEbavheJiaYqbVzAvmMLsIoGWd8OF/0|oY3c4t0YaFrWQmRokDpcu3ZokM6k">
+											<div class="avatar"><img src="./weixinwall_files/0(19)"><p>💋 * 杨铮铮 、🎉</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到杨铮铮 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t5SLh7mc3Oh15wvuYpG_BvM" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p2" value="杭州艾诺婚礼策划Nico|2|http://wx.qlogo.cn/mmopen/evVibIjIJ3iaUyYK5kBPo13s0suHn5fgZB78Vr9WelMufK7KNhjibKGYWDfN5bXV6gnK9ot5EFYEqvQyKueGwX7Pffer6LK9OxE/0|oY3c4t5SLh7mc3Oh15wvuYpG_BvM">
+											<div class="avatar"><img src="./weixinwall_files/0(20)"><p>杭州艾诺婚礼策划Nico</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到小古 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4txlGD3A8madLQI30eRu8SXI" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p2" value="小怡|2|http://wx.qlogo.cn/mmopen/evVibIjIJ3iaXvZV5Op93N574enQB0pZapPvSiaWVCEIFEic50fLfbVskiaibUFx3qd7cCz7qZrK9mgegWfUM9EiakibOF5JicPsAtCw8/0|oY3c4txlGD3A8madLQI30eRu8SXI">
+											<div class="avatar"><img src="./weixinwall_files/0(21)"><p>小怡</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到小怡 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4tzRsiTBLW5id7OwZuwYMga4" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="刘星|1|http://wx.qlogo.cn/mmopen/yPD89Ght3NxqkuEhFLJObibrxDas2xUViaL91jIRjcAbu01AvNbrOfH746vDVqESicbBjXjqONM3s3ZqpH9dECg2nnLJVTeWQJr/0|oY3c4tzRsiTBLW5id7OwZuwYMga4">
+											<div class="avatar"><img src="./weixinwall_files/0(22)"><p>刘星</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到琉璃 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t3wHlnIBkyKmcCOH5C5cjAw" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p2" value="陈曦|2|http://wx.qlogo.cn/mmopen/Er4WewHJsKiafe9mRPYPZMjicorRFPLCkibroRQJp4Pmhiby3NEj1Q9gF8ktBHENGsFFrbMRMTTDfchvQCdueG2ias3Lribhbew50x/0|oY3c4t3wHlnIBkyKmcCOH5C5cjAw">
+											<div class="avatar"><img src="./weixinwall_files/0(23)"><p>陈曦</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 陈 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t-8vCHbLhy7Q8KtU06euF-U" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="菜猫|1|http://wx.qlogo.cn/mmopen/L0viagAD1vx0opYC1AEbT1bCwbWsH3DwRk1r5bKejxBHjEqGFZ0OB8AhNaZufMhdQibZ1tVPhDm06aqj0ibVvXwN0mkSxicnVAy1/0|oY3c4t-8vCHbLhy7Q8KtU06euF-U">
+											<div class="avatar"><img src="./weixinwall_files/0(24)"><p>菜猫</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到高烨 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t8FfpGdi8hUZWL-cxIaMMH4" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p2" value="Πανδώρα|2|http://wx.qlogo.cn/mmopen/L0viagAD1vx11fggOBnj3Agf7mOic6Wduvsv1hXcibSyqeWrEAmlMWTmCmNJQ1Yc3ID6SScLdkwFak6gpiaiav7fblLicyicUVjCSKF/0|oY3c4t8FfpGdi8hUZWL-cxIaMMH4">
+											<div class="avatar"><img src="./weixinwall_files/0(25)"><p>Πανδώρα</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 陈瑶 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t8OQhUKn-95UGN0oG85sg4k" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="huzongtan|1|http://wx.qlogo.cn/mmopen/evVibIjIJ3iaUsHqW6zpJe0ps7Uribb4Gw7gTicicZicXib2XffTlPPgvc4GZgmf2MOTxhrfxWGaicXFLN57ANq7qgPxvAlicgxRcxfVB/0|oY3c4t8OQhUKn-95UGN0oG85sg4k">
+											<div class="avatar"><img src="./weixinwall_files/0(26)"><p>huzongtan</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到胡虎虎 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t-ay7zDg4gb4TZbkYfz7UnY" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="温馨商城·吉柏客零食王国|1|http://wx.qlogo.cn/mmopen/evVibIjIJ3iaUsHqW6zpJe0kMmkjdzsloKy4A8bgVNOO0uGwJT9RQFPVy13duyWZUBkL5nOaZbgoJCAODV76Yy6WicuFMs5L7hG/0|oY3c4t-ay7zDg4gb4TZbkYfz7UnY">
+											<div class="avatar"><img src="./weixinwall_files/0(27)"><p>温馨商城·吉柏客零食王国</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 李嘉震 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t4X9twWkg5OTumMVPfFIDj4" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="司仪 言 轩|1|http://wx.qlogo.cn/mmopen/50GZZAasxTm6QDhCCMQGsT3HD8aTOtydjSM4U1t5R52PbGT13TDKhPibMTiaNmkr6vrl2ZFiaSPyOE7r8su05OedZBp3etqyWth/0|oY3c4t4X9twWkg5OTumMVPfFIDj4">
+											<div class="avatar"><img src="./weixinwall_files/0(28)"><p>司仪 言 轩</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到言轩 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t2NlODIm3t34dC9B_SuZpQg" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="托米|1|http://wx.qlogo.cn/mmopen/L0viagAD1vx11fggOBnj3At9ZXbYgYkdJCmXndledL075yVspNs4xQA9Ds1tRvhyC2OQ0IRWj8PHkp4P69E6vDw4DjA8JNZiaU/0|oY3c4t2NlODIm3t34dC9B_SuZpQg">
+											<div class="avatar"><img src="./weixinwall_files/0(29)"><p>托米</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到大侠 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t2jkw-xI29lcY7vrYs2UCJI" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="雨田|1|http://wx.qlogo.cn/mmopen/Q3auHgzwzM7qIXa4KqDWlqed5RPIIia7th3qw3BWP5MfQSmlnRjuBVe7anCu8RegvDyCIOHBQ7cI8ic6PnCUxxVF6ckozVLP7NdBUnaUUjuks/0|oY3c4t2jkw-xI29lcY7vrYs2UCJI">
+											<div class="avatar"><img src="./weixinwall_files/0(30)"><p>雨田</p></div>
+											<div class="siginWords">
+												<i></i>
+													<p style="font-size:35px;">签到是不是 要认证的公众号？</p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t1hbv94pQoiuHjtitNkOPSk" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p2" value="    大晴子🌞。|2|http://wx.qlogo.cn/mmopen/ajNVdqHZLLAjrzHyKXvzuAqrQ0F26fb7VBIFcHTkfG0rgB6hqVExF6KzJQsFly0vhzbZ0hTw4wmuG2ZYPTWcRA/0|oY3c4t1hbv94pQoiuHjtitNkOPSk">
+											<div class="avatar"><img src="./weixinwall_files/0(31)"><p>    大晴子🌞。</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到大晴子 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t2EduGOjTfQOnX54gKDTVjs" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="【张伟】|1|http://wx.qlogo.cn/mmopen/L0viagAD1vx11fggOBnj3Au8jiah2CygaHTn2FTYVq3CAJVHqJJctiasjWycGdGsY18GAhJUHticHXE0g2ACAEnw3u1R3fc8PsSC/0|oY3c4t2EduGOjTfQOnX54gKDTVjs">
+											<div class="avatar"><img src="./weixinwall_files/0(32)"><p>【张伟】</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到你 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4tw6a0DD4P5-tCAaJnWJ-4Oo" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="扎西德勒|1|http://wx.qlogo.cn/mmopen/L0viagAD1vx11fggOBnj3AhhIVKeuD3C3vadS3ibJN15rFNdf1ibjRGanJT0WY23yylWiaxG5LxicKxnHzL9UvHnUfSBIuH16YfIj/0|oY3c4tw6a0DD4P5-tCAaJnWJ-4Oo">
+											<div class="avatar"><img src="./weixinwall_files/0(33)"><p>扎西德勒</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 sun </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4tzr3cQB-Sb8VXDyO_wO4wvM" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="Become frenzied |1|http://wx.qlogo.cn/mmopen/Q3auHgzwzM43hfKsZEq3Md9XCOj8SvsENm6mcxOWGLP44DRHqib32qBZSw2rSyl40oAN0JtE77YFFyGewR8jKrg/0|oY3c4tzr3cQB-Sb8VXDyO_wO4wvM">
+											<div class="avatar"><img src="./weixinwall_files/0(34)"><p>Become frenzied </p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 肖扬 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t0wRhLOH4m4jcr10R2VRgCs" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="🔝TIM|1|http://wx.qlogo.cn/mmopen/L0viagAD1vx11fggOBnj3At8mqY22EPNqcEFkvu5UWtHNoodA0Qr5qc7oLkibm47qZnOCROWullxHJamgMOOM1tNzaP7cUDDTU/0|oY3c4t0wRhLOH4m4jcr10R2VRgCs">
+											<div class="avatar"><img src="./weixinwall_files/0(35)"><p>🔝TIM</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到tim </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t0ynPygXGD7paFcS59Wv7rs" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p2" value="邢侠|2|http://wx.qlogo.cn/mmopen/ajNVdqHZLLAS2ib99mQfdUriaNXr7q4YZlreQWjbQUDZdDYcr43QhVWvR16Cv4VCOic2kVAnGia0cfzNStmmicvPALg/0|oY3c4t0ynPygXGD7paFcS59Wv7rs">
+											<div class="avatar"><img src="./weixinwall_files/0(36)"><p>邢侠</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到邢侠 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t3-tDvkUiGNQkSk_D2b_Djg" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="画饼集团总裁|1|http://wx.qlogo.cn/mmopen/ajNVdqHZLLBOicOMbVLazBYmKsXcIgL9ibhuQFdzWc8e2Tsc4bYxKZ16qUPZqKLCbsmGExnD51NEpN19ZnII9Scg/0|oY3c4t3-tDvkUiGNQkSk_D2b_Djg">
+											<div class="avatar"><img src="./weixinwall_files/0(37)"><p>画饼集团总裁</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 哈哈 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4tw_Ug5HEgzK0xbG6du9Yp3U" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p2" value="以梦为马|2|http://wx.qlogo.cn/mmopen/L0viagAD1vx11fggOBnj3AuKfpweenAM3JcGGibWfdwPia5PNsiaKm2QVqXm3alkZvmWo1HO1VCvlo6nHziaSQzQYyZ8WXlHNVxdR/0|oY3c4tw_Ug5HEgzK0xbG6du9Yp3U">
+											<div class="avatar"><img src="./weixinwall_files/0(38)"><p>以梦为马</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到可乐 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t1kUAQmAXVo3Oyj8s6ji3VU" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="A- ✨ Potential男人 ✨|1|http://wx.qlogo.cn/mmopen/50GZZAasxTm6QDhCCMQGsTTvl9akz9FcTVs6ibezjTVLVL6u1Bd0wSMFibpXlkze3BJtj728b9qEI6OVxwbxnqx12EKT8YlyjY/0|oY3c4t1kUAQmAXVo3Oyj8s6ji3VU">
+											<div class="avatar"><img src="./weixinwall_files/0(39)"><p>A- ✨ Potential男人 ✨</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 李男男 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t0GA65xYn-VDy86zWYT8xYU" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="祝蓝|1|http://wx.qlogo.cn/mmopen/L0viagAD1vx3ibOelXJctytcyFrIGuPhZxvFYqDzgQzVrlUNdIj7jZKAV0Lz7WH2a2zESHRB91yXViaOpttjg62yEmR1Qg5XpsG/0|oY3c4t0GA65xYn-VDy86zWYT8xYU">
+											<div class="avatar"><img src="./weixinwall_files/0(40)"><p>祝蓝</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到蓝一凡 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t6QAzVmNpnxiCufmuLXKpFs" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p2" value="王颖|2|http://wx.qlogo.cn/mmopen/PiajxSqBRaEJ8WQwb40DzkQ2TKU7MV8IUPwudeibGvI1u2JxZWOiagVva8oRuBfYhJ1icp028s1VicUarOiaK9lgKaYA/0|oY3c4t6QAzVmNpnxiCufmuLXKpFs">
+											<div class="avatar"><img src="./weixinwall_files/0(41)"><p>王颖</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到哈哈 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t-bWgRtkcNDEN_OXiZadZWA" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="双哥|1|http://wx.qlogo.cn/mmopen/evVibIjIJ3iaUyYK5kBPo13mxpMTDqUmeETYX4j6wouKTiaaibyZypSX1syqMZbeYu9NtibK2wlNHKibSJdaaVLeXyS2iaN4ruH02iaG/0|oY3c4t-bWgRtkcNDEN_OXiZadZWA">
+											<div class="avatar"><img src="./weixinwall_files/0(42)"><p>双哥</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到双哥 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t6I_nlnfroHiJXUZC0c_H9k" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="YK不困|1|http://wx.qlogo.cn/mmopen/PiajxSqBRaEJvWQ3jd4LJMlArJExSxypibXtciaZ8XLxNSvTibFejQpeVXmbPpFryfzRmjFHzkbNmkEJZejUbzY1Qw/0|oY3c4t6I_nlnfroHiJXUZC0c_H9k">
+											<div class="avatar"><img src="./weixinwall_files/0(43)"><p>YK不困</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 困困 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t4yc7CEBUwKkSfLUeF-bzQc" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value=" 庄河商家联盟✔庄河便民网|1|http://wx.qlogo.cn/mmopen/y5RpFDuUObz9Y4Me3QrcBBtRbFZ6ofqKhVibaoAEyLiazdqUlNDX6FpiaPPYP81r7icE3WuFW40eHfIlggibgZibR4EWx4Fs72Ehce/0|oY3c4t4yc7CEBUwKkSfLUeF-bzQc">
+											<div class="avatar"><img src="./weixinwall_files/0(44)"><p> 庄河商家联盟✔庄河便民网</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 刘德华 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4txnBIcmpa8W-ilOQhvXZ6jQ" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="A李谦 微营销 App制作 三级分销|1|http://wx.qlogo.cn/mmopen/PiajxSqBRaELbh9GWp4LlADhDPicOG14KWHXdHECQNB3rMrfCWlL193yC8K1ibuUSgFLyK6wRYvl9msfOleHTYtrw/0|oY3c4txnBIcmpa8W-ilOQhvXZ6jQ">
+											<div class="avatar"><img src="./weixinwall_files/0(45)"><p>A李谦 微营销 App制作 三级分销</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到李谦 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t_LuYTBGTWc_9hr7eJ4w9aM" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p2" value="Wendy_徐✌(՞ټ՞ )✌|2|http://wx.qlogo.cn/mmopen/y5RpFDuUOby8ys9WHQ1aGYrsTj8LmkclJ30zmh4a5wt6UKpSRXWlDnhFpibsxcIChU35eibO7768KheXWdSrlqNA/0|oY3c4t_LuYTBGTWc_9hr7eJ4w9aM">
+											<div class="avatar"><img src="./weixinwall_files/0(46)"><p>Wendy_徐✌(՞ټ՞ )✌</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到Wendy </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t2MSexfI_rKGmCsPGzZGNQU" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p2" value="懒猪猪|2|http://wx.qlogo.cn/mmopen/evVibIjIJ3iaUyYK5kBPo13rdhziaEtnHClU4QibmSxmTdbEy8HZct5EQnSiaVgibzFD5Fic5sSb6ibPPcyDeR8L8OgiacTlqqZk61SvL/0|oY3c4t2MSexfI_rKGmCsPGzZGNQU">
+											<div class="avatar"><img src="./weixinwall_files/0(47)"><p>懒猪猪</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 小管家婚庆 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4ty9_04hhJZ6y5z3DUerVFno" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p0" value="天生广告策划中心|0|http://wx.qlogo.cn/mmopen/evVibIjIJ3iaW7hpw3kjanVXJ6nMsaVj4tOGguicI6TEG3zSafaSgV69sh1mVvicVhZasterdpcNJaEvz7GGB2zo4ruPXlzNicYyO/0|oY3c4ty9_04hhJZ6y5z3DUerVFno">
+											<div class="avatar"><img src="./weixinwall_files/0(48)"><p>天生广告策划中心</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到天生 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4tzCYAsJLvaRdGGgXdwsxfD4" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p0" value="小云|0|http://wx.qlogo.cn/mmopen/50GZZAasxTm6QDhCCMQGsfPdUH7KAJicCw8ePMtXFicysaZ0XxT0rBpenQHMDfmGDEsRaXU74y7MGh1fQX61NSLegPIGFIicsQL/0|oY3c4tzCYAsJLvaRdGGgXdwsxfD4">
+											<div class="avatar"><img src="./weixinwall_files/0(49)"><p>小云</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 AA </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t1mK-L07jTrTNJ5MpNW4SUc" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="钱凌晨  微乾科技|1|http://wx.qlogo.cn/mmopen/50GZZAasxTm6QDhCCMQGsZDoSnibaMLIaTSPbLKWyjwMCaHkd8zXKYfVKnGlKGEpHALePR3mMcNIyjEhDKadKnkKa36Vd6v9q/0|oY3c4t1mK-L07jTrTNJ5MpNW4SUc">
+											<div class="avatar"><img src="./weixinwall_files/0(50)"><p>钱凌晨  微乾科技</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 钱凌晨 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t6WuQIOCL8dlsRDYszL_D74" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="刘曙|1|http://wx.qlogo.cn/mmopen/evVibIjIJ3iaUsHqW6zpJe0h3erqjDaK05lJXQtkEcMwVgpTZmf4ApSAxzBIbSXGzRcRQWrmnjtfW035ibFqNfOFicb3gHjYGLCy/0|oY3c4t6WuQIOCL8dlsRDYszL_D74">
+											<div class="avatar"><img src="./weixinwall_files/0(51)"><p>刘曙</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到了 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4typAR7C239Gt4ZxpSizgZjI" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p2" value="婷婷|2|http://wx.qlogo.cn/mmopen/Er4WewHJsKhDg9LbYS8CibsW1HoJVP6uG9RY5G60FUJ7abfOskp7pV9o6BqE1g1sRNiaNVzdvgJgUSQof6I9tMJ3AvVG73BWSic/0|oY3c4typAR7C239Gt4ZxpSizgZjI">
+											<div class="avatar"><img src="./weixinwall_files/0(52)"><p>婷婷</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到陈婷婷 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t6LZwOiXCGrXdsoZ_WVx9qU" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="贾明|1|http://wx.qlogo.cn/mmopen/Er4WewHJsKiafe9mRPYPZMlOFZ9yFbuDPyjkUzjXHc4MRsVia8icoDlH4JVjehkvPyqyyKV2IKzD62LOUGsY0DicuBj1Pbc5sRz8/0|oY3c4t6LZwOiXCGrXdsoZ_WVx9qU">
+											<div class="avatar"><img src="./weixinwall_files/0(53)"><p>贾明</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 默默地签到 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t142VlIW4jrkb5Ild1QLSho" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="TOMMY|1|http://wx.qlogo.cn/mmopen/50GZZAasxTkDq5Zj224ibx2I3Jlfq9CICaVPSfNeqCMbgpDYIPticm1VSg5fq9ViaRsPcnwr4JjcHc3GbE2NC05WWeukiakHiatSo/0|oY3c4t142VlIW4jrkb5Ild1QLSho">
+											<div class="avatar"><img src="./weixinwall_files/0(54)"><p>TOMMY</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 妮妮 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4txeFuiARfQ6izg5B4mZ-yiE" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p2" value="铃铃铃铃铃。|2|http://wx.qlogo.cn/mmopen/L0viagAD1vx3ibOelXJctytUe73cAby6HU4fcRDhBicLEelc7uvhs5KQibLlKiaHeib5uazDCJ5nK3zb78ykVl9UibbgV3ib5FhTByZH/0|oY3c4txeFuiARfQ6izg5B4mZ-yiE">
+											<div class="avatar"><img src="./weixinwall_files/0(55)"><p>铃铃铃铃铃。</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 玲玲 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t-gOICkK1-vSVlVIy0qpK2Y" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="眼底星空|1|http://wx.qlogo.cn/mmopen/L0viagAD1vx11fggOBnj3AjnzNStI6iahDzTOJnfNJeuGOJ0CfjXibwOq4ibQuCfzk8lej4J8plbYf7Nic0HNb63ibZpcveN0EbC7Q/0|oY3c4t-gOICkK1-vSVlVIy0qpK2Y">
+											<div class="avatar"><img src="./weixinwall_files/0(56)"><p>眼底星空</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到啸月 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t1LzzFHr1D8DxbV5Z4ag_G0" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="Mozart|1|http://wx.qlogo.cn/mmopen/VfJdaIs9AxrZfqaUEZibrZf9kgdJFBqdpj9X4zkOQbVupX9Efo6kK821BlRCkI5u0aicWq25XJB7cXKn2uadCuvpU6b5VBUTwK/0|oY3c4t1LzzFHr1D8DxbV5Z4ag_G0">
+											<div class="avatar"><img src="./weixinwall_files/0(57)"><p>Mozart</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到张乐 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4tz-zUvXEoypQoR4mtYvtKAI" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="[      ]|1|http://wx.qlogo.cn/mmopen/L0viagAD1vx3ibOelXJctytQmYF5A70uMavxh44H6TPgVicDC3GqpN1pxbvyPT4Pq26scSWCBF2qWoaJ6BaTria4U7EDyOffDpZu/0|oY3c4tz-zUvXEoypQoR4mtYvtKAI">
+											<div class="avatar"><img src="./weixinwall_files/0(58)"><p>[      ]</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到 影月 </p>
+											</div>
+										</div>
+									</li>
+					    			<li id="oY3c4t6lo8KfIipEgYXNwb71l2Ho" class="user-had">
+					    				<div class="play">
+					    					<input type="hidden" name="p1" value="婚礼主持人高锋13938901195|1|http://wx.qlogo.cn/mmopen/ajNVdqHZLLAJTrAxGG6plibtII9XrVPGtibf7gdX7NHJDMaU59YRulvPwEJgubCM3dfIYibR4w7J5bqfSd76lf9rA/0|oY3c4t6lo8KfIipEgYXNwb71l2Ho">
+											<div class="avatar"><img src="./weixinwall_files/0(59)"><p>婚礼主持人高锋13938901195</p></div>
+											<div class="siginWords">
+												<i></i>
+												    <p> 签到高锋 </p>
+											</div>
+										</div>
+									</li>
+						<li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li><li class="user-no"><div class="play"></div></li></ul>
+					</div>
+					<!--签到结束-->
+	<!--上墙开始-->
+	<div id="msgWall" class="contBox msgWall borderStyle" style="display: block;">
+		<ul id="saylist" style="margin-top: 0px;"><li onmouseover="showOpenSayInfo(this)" onmouseout="hideOpenSayInfo(this)" onclick="openSayInfo(141)"><div class="userAvatar"><i class="avatarFrame"></i><img src="http://wx.qlogo.cn/mmopen/Q3auHgzwzM7EicLLZsqjJibfwwvsE1DaObSVgVWiaZMUoJ6A1yxGdIEzg0b10IHLXia8UYEYMklRGMUYsn9u6L8MxA/0" class="avatar"></div><div class="msgBox colorStyle"><h3>...：</h3><p class="msgTxt">123</p></div><div class="contIcon detailBtn"></div></li><li onmouseover="showOpenSayInfo(this)" onmouseout="hideOpenSayInfo(this)" onclick="openSayInfo(142)"><div class="userAvatar"><i class="avatarFrame"></i><img src="http://wx.qlogo.cn/mmopen/evVibIjIJ3iaUa9yCfib927agQnYWcMbyzletV7DsrVa68wzO2sSHh2TbIahmfaVJpz0550SgHbWx60FRkBWgsicZc86couyDFDq/0" class="avatar"></div><div class="msgBox colorStyle"><h3>华软智能微信：</h3><p class="msgTxt">拉拉</p></div><div class="contIcon detailBtn" style="display: block;"></div></li><li onmouseover="showOpenSayInfo(this)" onmouseout="hideOpenSayInfo(this)" onclick="openSayInfo(143)"><div class="userAvatar"><i class="avatarFrame"></i><img src="http://wx.qlogo.cn/mmopen/evVibIjIJ3iaUa9yCfib927agQnYWcMbyzletV7DsrVa68wzO2sSHh2TbIahmfaVJpz0550SgHbWx60FRkBWgsicZc86couyDFDq/0" class="avatar"></div><div class="msgBox colorStyle"><h3>华软智能微信：</h3><p class="msgTxt">我要上墙</p></div><div class="contIcon detailBtn"></div></li></ul>
+	</div>
+	<!--上墙结束-->
+	<!--单条详情开始-->
+	<div id="msgDetail" class="contBox msgDetail" style="display: none;">
+		<ul id="sayDetailList"></ul>
+	</div>
+	<!--单条详情结束-->
+					<!--抽奖开始-->
+	<div class="contBox lotteryWall clearfix" id="lotteryWall" style="display: none;">
+						<div class="lotteryBox">
+							<div class="lotteryTit clearfix colorStyle">
+								<span class="contIcon" id="luckTitle">现场抽奖</span>
+								<p>参加抽奖人数<em id="may_num">0</em></p>
+							</div>
+							<dl class="lotteryPerson colorStyle">
+								<dt><img src="./weixinwall_files/lotteryDefault.png" id="luck_img"></dt>
+								<dd id="luck_name"></dd>
+							</dl>
+							<table width="472" border="0" cellpadding="0" cellspacing="0">
+								<tbody><tr>
+									<td align="left">
+										<p>
+											<select name="luckTag" id="tagid" class="selStyle sel180" onchange="changeLuck(this.value);">
+											<option value="-1">--请选择奖项--</option>
+											</select>
+										</p>
+										<div id="num_input" style="display:none"><!--按人数抽奖输入项-->
+											<p id="prizeName"><input type="text" id="comment" placeholder="抽奖前请备注奖品" class="txtStyle txt180" maxlength="7"></p>
+											<p class="colorOne" id="prizeNum">
+												一次抽取               
+												<select id="num" name="" class="selStyle sel80">
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+													<option value="6">6</option>
+													<option value="7">7</option>
+													<option value="8">8</option>
+													<option value="9">9</option>
+													<option value="10">10</option>
+													<option value="11">11</option>
+													<option value="12">12</option>
+													<option value="13">13</option>
+													<option value="14">14</option>
+													<option value="15">15</option>
+													<option value="16">16</option>
+													<option value="17">17</option>
+													<option value="18">18</option>
+													<option value="19">19</option>
+													<option value="20">20</option>
+												</select>
+												人
+											</p>
+										</div>
+									</td>
+									<td align="right">
+										<p id="tag_flag">
+											<input type="button" id="startBtn" class="btnStyle btn255" onclick="startBtn();" value="开始抽奖">
+											<input type="button" style="display:none" id="endBtn" value="结束抽奖" class="btnStyle btn255" onclick="endBtn();">
+										</p>
+										<p id="num_flag" style="display:none">
+											<input type="button" id="startNum" value="开始抽奖" class="btnStyle btn255" onclick="start();"><!--startNum/endNum-->
+											<input type="button" id="endNum" value="结束抽奖" class="btnStyle btn255" onclick="stop();">
+										</p>
+									</td>
+							</tr></tbody></table>
+						</div>
+						<input type="hidden" id="luckid" value=""><!--奖项活动id-->
+						<input type="hidden" id="luckname" value=""><!--保存奖项名称-->
+						<input type="hidden" id="tagExclude" value=""><!--按奖项抽奖是否可以重复中奖-->
+						<input type="hidden" id="tagNum" value=""><!--按奖项抽奖人数-->
+						<input type="hidden" id="numExclude" value=""><!--按人数抽奖是否可以重复中奖-->
+						<div class="lotteryResult theResult">
+							<div class="lotteryCont">
+								<h3 class="clearfix"><p>获奖人数<em id="lucknum">0</em></p>获奖名单</h3>
+								<div class="lotterys">
+									<div class="lotteryInfo">
+										<span>序号</span>
+										<span class="dot">获奖人</span>
+										<span>奖项</span>
+									</div>
+									<div class="lotteryName">
+										<div class="lotteryDefault">
+										点击按钮，开始抽奖吧！
+										</div>
+										<ul id="luck_index">
+										<p id="lotteryName"></p>
+										</ul>
+									</div>
+									<div class="lotteryBtn"><input type="button" id="newLuckButton" value="重新抽奖" class="btnStyle btn90" onclick="javascript:reset();"></div><!--showLayer(4)-->
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--抽奖结束-->
+					<!--投票开始-->
+	<div class="contBox voteWall" id="voteWall" style="display: none;">
+		<div class="voteTit clearfix">
+			<div class="voteTxt clearfix">
+				<h3 id="content"></h3>
+				<p>微信关注“普度在线”，发送“我要投票”即可参与投票</p>
+			</div>
+			<div class="voteType">
+				<div class="voteNum">共<span id="sum">0</span>人参与投票</div>
+				<select name="voteTitle.id" id="voteTitle" class="selStyle sel180">
+				</select>
+			</div>
+		</div>
+		<div class="voteResult clearfix" style="height:316px;">
+			<ul id="vote">
+			</ul>
+			<ul id="vote1">
+			</ul>
+		</div>
+		<div class="voteNote">
+			<p>注：<span class="color pink"></span>票数第一<span class="color blue"></span>票数第二<span class="color green"></span>票数第三</p>
+		</div>
+	</div>
+					<!--投票结束-->
+					<!--对对碰开始-->					
+					<div id="pairWall" class="contBox pairWall clearfix" style="display: none;">
+						<div class="pairBox">
+							<div class="pairTit clearfix colorStyle">
+								<span class="contIcon">缘分对对碰</span>
+								<p>参加配对人数<em id="pairyuan">89</em></p>
+							</div>
+							<div class="pairPerson clearfix colorStyle">
+								<dl class="left">
+									<dt><img id="man" src="./weixinwall_files/pairDefault.png"></dt>
+									<dd><span class="contIcon">***</span></dd>
+								</dl>
+								<dl class="right">
+									<dt><img src="./weixinwall_files/pairDefault.png"></dt>
+									<dd><span class="contIcon">***</span></dd>
+								</dl>
+							</div>
+							<div class="pairBtn">
+							<input type="button" id="pairstartBtn1" value="为Ta求缘分" class="btnStyle btn255" onclick="pairstartBtn1();">
+							<input type="button" style="display:none" id="pairendBtn1" value="停止" class="btnStyle btn255" onclick="pairendBtn1();">
+							
+							</div>
+						</div>
+						<div class="pairResult theResult">
+							<div class="pairCont">
+								<h3 class="clearfix"><p>配对组数<span id="ccou">0</span></p>配对名单</h3>
+								<div class="pairings">
+									<div class="pairInfo">
+										<span>配对序号</span>
+										<span class="dot">配对的微信昵称</span>
+									</div>
+									<div class="pairName">
+										<div class="pairDefault">点击按钮，开始配对吧！</div>
+										<ul id="pairlist">
+										</ul>
+									</div>
+									<div class="lotteryBtn"><input type="button" id="btnret" onclick="btnret();" value="重新配对" class="btnStyle btn90"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--对对碰结束-->
+					<!--现场互动开始-->
+	<div id="onSiteWall" class="contBox onSiteWall clearfix" style="display: none;">
+						<div class="lotteryBox">
+							<div class="lotteryTit onSiteTit clearfix colorStyle" id="interact_Num">
+								<span class="contIcon">现场互动</span>
+								<p>参加活动人数<em></em></p>
+							</div>
+							<dl class="lotteryPerson colorStyle">
+								<dt><img src="./weixinwall_files/onSiteDefault.png" id="interactImg"></dt>
+								<dd id="interactText">***</dd>
+							</dl>
+							<table width="472" border="0" cellpadding="0" cellspacing="0">
+								<tbody><tr>
+									<td align="left">
+										<p>
+											<select name="" id="seltyp" class="selStyle sel180" onchange="changeInter();">
+												<option id="randoms" value="随机选人">随机选人</option>
+												<option id="diy" value="自选人数性别">自选人数性别</option>
+											</select>
+										</p>
+										<p><input type="text" id="desc" maxlength="7" value="互动备注" class="txtStyle txt180"></p>
+										<p class="colorOne" id="coutOnep">
+											一次抽取               
+											<select name="coutOne" id="coutOne" class="selStyle sel80">
+												<option value="">100</option>
+											</select>人</p>
+										<!--配对-->
+										<p class="colorOne" style="display: none;">
+											一次抽取               
+											<select name="" class="selStyle sel80">
+												<option value="">100</option>
+											</select>
+											对
+										</p>
+										<!--自主性别-->
+										<p class="colorOne" id="intersex" style="display: none;">
+											一次               
+											<select id="intersexm" name="" class="selStyle sel50">
+												<option value="">20</option>
+											</select>男
+											<select id="intersexw" name="" class="selStyle sel50">
+												<option value="">20</option>
+											</select>女
+										</p>
+									</td>
+									<td align="right">
+									<div id="btndiv">
+										<input type="button" id="startInteract" value="开始" class="btnStyle btn255" onclick="startauto();">
+										<input type="button" style="display:none;" id="endInteract" value="停止" class="btnStyle btn255" onclick="stopauto();">
+										</div>
+										<div id="autobtn" style="display:none;">
+										<input type="button" id="startInteractz" value="自选人数性别开始" class="btnStyle btn255" onclick="startInteract();">
+										<input type="button" id="endInteractz" style="display:none;" value="自选人数性别停止" class="btnStyle btn255" onclick="endInteract();">
+										</div>
+										</td>
+							</tr></tbody></table>
+						</div>
+						<div class="lotteryResult theResult">
+							<div class="lotteryCont">
+								<!--随机抽选-->
+								<div class="radomBox">
+									<h3 class="clearfix"><p>互动人数<em id="interactnum"></em></p>参与名单</h3>
+									<div class="lotterys">
+										<div class="lotteryInfo">
+											<span>序号</span>
+											<span class="dot">参与人</span>
+											<span>备注</span>
+										</div>
+										<div class="lotteryName">
+										<div class="lotteryDefault" id="interactDefault">点击按钮，开始抽奖吧！</div>
+											<ul id="interact_index">
+											<p id="interactName"></p>
+											</ul>
+											<ul id="interact_index1" style="display: none;">
+											<p id="interactName1"></p>
+											</ul>
+										</div>
+										<div class="lotteryBtn"><input type="button" id="" value="全部清空" class="btnStyle btn90" onclick="interactReset();"></div>
+									</div>
+								</div>
+								<!--随机抽选-->
+								<!--配对-->
+								<div class="pairingBox">
+									<h3 class="clearfix"><p>配对组数<em>20</em></p>配对名单</h3>
+									<div class="pairings">
+										<div class="pairInfo">
+											<span>配对序号</span>
+											<span class="dot">配对的微信昵称</span>
+										</div>
+										<div class="pairName">
+											<div class="pairDefault">点击按钮，开始配对吧！</div>
+											<ul>
+												<li class="clearfix">
+													<i class="sn">3</i>
+													<div class="pairMan clearfix">
+														<dl>
+															<dt><img src="./weixinwall_files/avatar8.png"></dt>
+															<dd>慕容晓晓晓</dd>
+														</dl>
+														<dl>
+															<dt><img src="./weixinwall_files/avatar11.png"></dt>
+															<dd>慕容晓晓晓</dd>
+														</dl>
+													</div>
+												</li>
+												<li>
+													<i class="sn">2</i>
+													<div class="pairMan clearfix">
+														<dl>
+															<dt><img src="./weixinwall_files/avatar8.png"></dt>
+															<dd>慕容晓晓晓</dd>
+														</dl>
+														<dl>
+															<dt><img src="./weixinwall_files/avatar11.png"></dt>
+															<dd>慕容晓晓晓</dd>
+														</dl>
+													</div>
+												</li>
+												<li>
+													<i class="sn">1</i>
+													<div class="pairMan clearfix">
+														<dl>
+															<dt><img src="./weixinwall_files/avatar8.png"></dt>
+															<dd>慕容晓晓晓</dd>
+														</dl>
+														<dl>
+															<dt><img src="./weixinwall_files/avatar11.png"></dt>
+															<dd>慕容晓晓晓</dd>
+														</dl>
+													</div>
+												</li>									
+											</ul>
+										</div>
+										<div class="lotteryBtn"><input type="button" id="" value="重新配对" class="btnStyle btn90"></div>
+									</div>
+								</div>
+								<!--配对-->
+								<!--自主性别-->
+								<div class="sexCustomerBox">
+									<h3 class="clearfix"><p>获奖人数<em>20</em></p>参与名单</h3>
+									<div class="lotterys">
+										<div class="lotteryInfo">
+											<span>序号</span>
+											<span class="dot">参与人</span>
+											<span>奖项</span>
+										</div>
+										<div class="lotteryName">
+											<div class="lotteryDefault">点击按钮，开始抽奖吧！</div>
+											<ul>
+												<li>
+													<p class="prize">笔记本电脑</p>
+													<i class="sn">3</i>
+													<p class="man"><img src="./weixinwall_files/avatar8.png">慕容晓晓晓</p>
+												</li>
+												<li>
+													<p class="prize">笔记本电脑</p>
+													<i class="sn">2</i>
+													<p class="man"><img src="./weixinwall_files/avatar8.png">慕容晓晓晓</p>
+												</li>
+												<li>
+													<p class="prize">笔记本电脑</p>
+													<i class="sn">1</i>
+													<p class="man"><img src="./weixinwall_files/avatar8.png">慕容晓晓晓</p>
+												</li>									
+											</ul>
+										</div>
+										<div class="lotteryBtn"><input type="button" id="" value="全部清空" class="btnStyle btn90"></div>
+									</div>
+								</div>
+								<!--自主性别-->
+							</div>
+						</div>
+					</div>
+					<!--现场互动结束-->
+					<!--二维码-->
+					<div class="QRcodeBox" style="display: none;">
+						<h3>使用微信扫描以下二维码，关注后发送相关内容即可参与微信墙活动</h3>
+						<a href="javascript:void(0);" onclick="closeQrcodeWall();" class="codeClose"></a>
+						<p><img id="bigQrurl" src="./weixinwall_files/47a17569328c43518fd8bb779e8b391a.png" alt=""></p>
+					</div>
+				</div>
+				<!--页尾开始-->
+				<div id="tabMenu" class="footer clearfix">
+						<div class="btnIcon btnMenu menuStyle" style="margin:0 0 0 20px;">
+							<img id="logurl" name="home.logurl" src="./weixinwall_files/puduzaixian_log.png" width="130" height="35">
+						</div>
+					<div class="btnIcon btnMenu menuStyle" style="margin:0 25px;">
+						<a href="javascript:void(0)" data-class="skinSelect" class="btnSkinSel tooltipstered tooltip"></a>
+						<a href="javascript:void(0)" data-class="siginWall" class="btnCheckIn tooltipstered tooltip"></a>
+						<a href="javascript:void(0)" data-class="msgWall" class="btnTheWall tooltipstered tooltip"></a>
+						<a href="javascript:void(0)" data-class="lotteryWall" class="btnLottery tooltipstered tooltip"></a>
+						<a href="javascript:void(0)" data-class="voteWall" class="btnVote tooltipstered tooltip"></a>
+						<a href="javascript:void(0)" data-class="pairWall" class="btnPair tooltipstered tooltip"></a>
+						<a href="javascript:void(0)" onclick="progressInteract();" data-class="onSiteWall" class="btnOnSite tooltipstered tooltip"></a>
+						<a href="javascript:void(0)" data-class="fullWall" class="btnFull tooltipstered tooltip" onclick="fullScreen(document.documentElement)"></a>
+					</div>
+					<div class="btnIcon btnAct menuStyle" style="margin:0 18px 0 24px;">
+						<a href="javascript:void(0)" class="btnOldest tooltip tooltipstered" onclick="wallPage(&#39;min&#39;)"></a>
+						<a href="javascript:void(0)" class="btnPrev tooltip tooltipstered" onclick="wallPage(&#39;last&#39;)"></a>
+						<a href="javascript:void(0)" class="tooltip tooltipstered btnPlay" id="but_play" onclick="wallPage(&#39;play&#39;)"></a>
+						<!--<a href="javascript:void(0)" class="btnPlay tooltip" onClick="openSay()"></a>-->
+						<a href="javascript:void(0)" class="btnNext tooltip tooltipstered" onclick="wallPage(&#39;next&#39;)"></a>
+						<a href="javascript:void(0)" class="btnNewest tooltip tooltipstered" onclick="wallPage(&#39;max&#39;)"></a>
+					</div>
+				</div>							
+				<!--页尾结束-->
+			</div>
+		</div>
+		
+		<!--抽奖弹框-->
+		<div class="layerStyle layer360" id="layer1">
+			<h3><span class="layerClose" onclick="closeLayer(this)"></span>温馨提示</h3>
+			<div class="layerTxt">亲，您还没有选择奖项，请先选择奖项，再开始抽奖！</div>
+			<div class="layerBtn">
+				<input type="button" id="" value="确定" class="btnTxt btnSure" onclick="closeLayer(this)">
+				<input type="button" id="" value="取消" class="btnTxt btnSure" onclick="closeLayer(this)">
+			</div>
+		</div>
+		
+		<div class="layerStyle layer360" id="layer2">
+			<h3><span class="layerClose" onclick="closeLayer(this)"></span>温馨提示</h3>
+			<div class="layerTxt">亲，确定删除中奖者吗？删除后将不可恢复此记录！</div>
+			<div class="layerBtn">
+				<input type="button" id="" value="确定" class="btnTxt btnSure" onclick="closeLayer(this)">
+				<input type="button" id="" value="取消" class="btnTxt btnSure" onclick="closeLayer(this)">
+			</div>
+		</div>
+		
+		<div class="layerStyle layer360" id="layer3">
+			<h3><span class="layerClose" onclick="closeLayer(this)"></span>温馨提示</h3>
+			<div class="layerTxt">亲，当前奖项已经抽满人数，不能再进行抽奖！</div>
+			<div class="layerBtn">
+				<input type="button" id="" value="返回" class="btnTxt btnSure" onclick="closeLayer(this)">
+			</div>
+		</div>
+		
+		<div class="layerStyle layer360" id="layer4">
+			<h3><span class="layerClose" onclick="closeLayer(this)"></span>温馨提示</h3>
+			<div class="layerTxt">亲，重置抽奖用户会重新放入奖池，确定要重置吗？</div>
+			<div class="layerBtn">
+				<input type="button" id="" value="确定" class="btnTxt btnSure" onclick="closeLayer(this)">
+				<input type="button" id="" value="取消" class="btnTxt btnSure" onclick="closeLayer(this)">
+			</div>
+		</div>
+		<div class="layerStyle layer360" id="layer6">
+			<h3><span class="layerClose" onclick="closeLayer(this)"></span>温馨提示</h3>
+			<div class="layerTxt">可抽奖人数为0！不能再进行抽奖</div>
+			<div class="layerBtn">
+				<input type="button" id="" value="返回" class="btnTxt btnSure" onclick="closeLayer(this)">
+			</div>
+		</div>
+	  <div class="layerStyle layer360" id="layer7">
+			<h3><span class="layerClose" onclick="closeLayer(this)"></span>温馨提示</h3>
+			<div class="layerTxt">全部人数已经抽奖完毕！</div>
+			<div class="layerBtn">
+				<input type="button" id="" value="确定" class="btnTxt btnSure" onclick="closeLayer(this)">
+			</div>
+		</div>
+		<!--对对碰-->
+		<div class="layerStyle layer360" id="diagpeng">
+			<h3><span class="layerClose"></span>温馨提示</h3>
+			<div class="layerTxt txtCenter">亲，确定要拆散这对有缘人？</div>
+			<div class="layerBtn">
+				<input type="button" id="" value="确定" class="btnTxt btnSure">
+				<input type="button" id="" value="取消" class="btnTxt btnSure" onclick="closeLayer(this)">
+			</div>
+		</div>	
+				<!--对对碰全部清空-->
+		<div class="layerStyle layer360" id="clearall">
+			<h3><span class="layerClose"></span>温馨提示</h3>
+			<div class="layerTxt txtCenter">亲，确定要全部清空么?</div>
+			<div class="layerBtn">
+				<input type="button" id="" value="确定" class="btnTxt btnSure">
+				<input type="button" id="" value="取消" class="btnTxt btnSure" onclick="closeLayer(this)">
+			</div>
+		</div>	
+			<!--对对碰清空一个-->
+	<div class="layerStyle layer360" id="clearpeng1">
+		<h3><span class="layerClose"></span>温馨提示</h3>
+		<div class="layerTxt txtCenter">亲，确定要全部清空么?</div>
+		<div class="layerBtn">
+			<input type="button" id="" value="确定" class="btnTxt btnSure">
+			<input type="button" id="" value="取消" class="btnTxt btnSure" onclick="closeLayer(this)">
+		</div>
+	</div>	
+						<!--现场互动全部清空-->
+		<div class="layerStyle layer360" id="clearhudong">
+			<h3><span class="layerClose"></span>温馨提示</h3>
+			<div class="layerTxt txtCenter">亲，确定要全部清空么?</div>
+			<div class="layerBtn">
+				<input type="button" id="" value="确定" class="btnTxt btnSure">
+				<input type="button" id="" value="取消" class="btnTxt btnSure" onclick="closeLayer(this)">
+			</div>
+		</div>	
+		<!--现场互动清空一个-->
+		<div class="layerStyle layer360" id="clearhudong1">
+			<h3><span class="layerClose"></span>温馨提示</h3>
+			<div class="layerTxt txtCenter">亲，确定要清除该项么?</div>
+			<div class="layerBtn">
+				<input type="button" id="" value="确定" class="btnTxt btnSure">
+				<input type="button" id="" value="取消" class="btnTxt btnSure" onclick="closeLayer(this)">
+			</div>
+		</div>
+		<!--chrome提示条-->
+		<div class="chromeTip" style="display: none;">
+			为了更好展现微信墙功能，让您获得更好的用户体验，建议您使用<a href="http://www.google.cn/intl/zh-CN/chrome/browser/" target="_blank">Chrome浏览器</a>。<a class="chromeBtn" href="http://www.google.cn/intl/zh-CN/chrome/browser/" target="_blank"></a>
+			<span class="closeIcon"></span>
+		</div>
+	
+</body></html>

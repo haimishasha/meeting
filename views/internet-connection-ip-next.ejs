@@ -1,0 +1,52 @@
+<%-include header.ejs%>
+    <div class="am-tabs" data-am-tabs>
+        <ul class="am-tabs-nav am-nav am-nav-tabs" >
+            <li class="am-active width-li" ><a href="#tab1">我的IP</a></li>
+            <li class="width-li"><a href="#tab2">待审核</a></li>
+        </ul>
+
+        <div class="am-tabs-bd">
+            <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+                <% ipApplyF.forEach(function(ipApply,index){ %>
+                <div class="am-g" style="text-align: center">
+                    <div class="am-u-sm-2" >
+                        <label for="doc-ipt-ip-1"><h1>IP:</h1></label>
+                    </div>
+                    <div class="am-u-sm-7">
+                        <div class="am-form-group" >
+                            <a href="/internet-connection-details/<%= ipApply.ID %>"><h1><%= ipApply.adminIP%></h1> </a>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-3" >
+                        <a href="/internet-connection-details/<%= ipApply.ID %>" class="am-btn am-btn-default am-round" style="padding: 10px;background-color:#b2e2fa">详情</a>
+                    </div>
+                    <hr data-am-widget="divider" style="border-width: 2px;border-color: #0084c7" class="am-divider am-divider-dashed" />
+                </div>
+                <%})%>
+                <a href="/internet-connection-ip-apply" class="am-btn am-btn-default add">+</a>
+            </div>
+
+
+            <div class="am-tab-panel am-fade" id="tab2">
+                <% ipApplyW.forEach(function(ipApply){%>
+                    <div class="am-g" style="text-align: center">
+                            <div class="am-u-sm-3">
+                            <label for="doc-ipt-ip-1"><h4>待审核</h4></label>
+                    </div>
+                    <div class="am-u-sm-6">
+                            <div class="am-form-group">
+                            <a href="/internet-connection-details2/<%= ipApply.ID %>">
+                            <h1><%= ipApply.Time %></h1>
+                            </a>
+                            </div>
+                            </div>
+                            <div class="am-u-sm-3">
+                            <a href="/internet-connection-details2/<%= ipApply.ID %>" class="am-btn am-btn-default am-round" style="padding: 10px;background-color:#b2e2fa">详情</a>
+                            </div>
+                            <hr data-am-widget="divider" style="border-width: 2px;border-color: #0084c7" class="am-divider am-divider-dashed" />
+                            </div>
+               <%})%>
+            </div>
+        </div>
+    </div>
+<%include footer.ejs %>

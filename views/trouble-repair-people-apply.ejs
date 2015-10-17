@@ -1,0 +1,49 @@
+<%-include header.ejs%>
+<form class="am-form" enctype="multipart/form-data">
+    <fieldset>
+        <legend>请填写故障详情单:</legend>
+        <div class="am-form-group">
+            <label for="doc-ipt-name-1">姓名</label>
+            <input type="text" id="doc-ipt-name-1" placeholder="姓名只能输入字母或汉字" class="am-form-field am-round" required="required">
+        </div>
+        <div class="am-form-group">
+            <label for="doc-ipt-number-1">联系方式</label>
+            <input type="text" id="doc-ipt-number-1" class="am-form-field am-round" placeholder="只接受手机号码" required="required">
+        </div>
+        <div class="am-form-group">
+            <label for="doc-ipt-address-1">办公地点</label>
+            <input type="text"id="doc-ipt-address-1" class="am-form-field am-round" placeholder="请详细指明所在楼栋" required="required">
+        </div>
+        <div class="am-form-group">
+            <label for="doc-select-1">所在院系</label>
+            <select id="doc-select-1">
+                <option value="option1">计算机科学与技术学院</option>
+                <option value="option2">机械学院</option>
+                <option value="option3">艺术学院</option>
+                <option value="option3">体育学院</option>
+                <option value="option3">人文社科学院</option>
+                <option value="option3">环全学院</option>
+                <option value="option3">电子学院</option>
+                <option value="option3">经济管理学院</option>
+            </select>
+            <span class="am-form-caret"></span>
+        </div>
+        <div class="am-form-group">
+            <label for="doc-ta-1">故障描述</label>
+            <textarea class="" rows="5" id="doc-ta-1" placeholder="请尽可能详细的描述您的问题，方便我们为您寻找擅长解决此类故障那个的相关技术人员.
+            您也可以拍照上传图片来辅助描述您的问题" required="required" ></textarea>
+        </div>
+        <div class="am-form-group am-form-file">
+            <label for="doc-ipt-file-2">拍照或上传</label>
+            <div>
+                <button type="button" class="am-btn am-btn-default am-btn-sm">
+                    <i class="am-icon-cloud-upload"></i> 选择要上传的图片</button>
+            </div>
+            <input type="file" multiple="multiple" id="doc-ipt-file-2">
+        </div>
+        <button  type="submit" class="am-btn am-btn-default am-round" id="trouble-present">提交</button>
+        <a href="/trouble-repair-people" class="am-btn am-btn-default am-round">退出</a>
+        <p><br/></p>
+    </fieldset>
+</form>
+<%include footer.ejs %>

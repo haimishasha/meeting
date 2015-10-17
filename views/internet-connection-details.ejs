@@ -1,0 +1,51 @@
+<%-include header %>
+    <fieldset>
+        <legend>我的IP详情:</legend>
+        <div class=" am-form-group am-g">
+            <div class="am-u-sm-3"><label for="">姓名</label></div>
+            <div class="am-u-sm-9"><input type="text" class="am-form-field am-round" readonly="readonly" value=<%= detailsIpConnect.Name %>>
+            </div>
+        </div>
+        <div class=" am-form-group am-g">
+            <div class="am-u-sm-3"><label for="">联系方式</label></div>
+            <div class="am-u-sm-9"><input type="text" class="am-form-field am-round" readonly="readonly" value=<%= detailsIpConnect.Contact %>>
+            </div>
+        </div>
+        <div class="am-form-group  am-g">
+            <div class="am-u-sm-3"><label for="">IP地址</label></div>
+            <div class="am-u-sm-9"><input type="text" class="am-form-field am-round" readonly="readonly" value=<%= detailsIpConnect.adminIP %>>
+            </div>
+        </div>
+        <div class="am-form-group  am-g">
+            <div class="am-u-sm-3"><label for="">子网掩码</label></div>
+            <div class="am-u-sm-9"><input type="text" class="am-form-field am-round" readonly="readonly" value=<%= detailsIpConnect.adminSubnetMask %>>
+            </div>
+        </div>
+        <div class="am-form-group  am-g">
+            <div class="am-u-sm-3"><label for="">网关</label></div>
+            <div class="am-u-sm-9"><input type="text" class="am-form-field am-round" readonly="readonly" value=<%= detailsIpConnect.adminSubnetMask %>>
+            </div>
+        </div>
+        <div class=" am-form-group am-g">
+            <div class="am-u-sm-3"><label for="">DNS</label></div>
+            <div class="am-u-sm-9"><input type="text" class="am-form-field am-round" readonly="readonly" value=<%= detailsIpConnect.adminDNS %>>
+            </div>
+        </div>
+        <div class="am-form-group  am-g">
+            <div class="am-u-sm-3"><label for="">MAC</label></div>
+            <div class="am-u-sm-9"><input type="text" class="am-form-field am-round" readonly="readonly" value=<%= detailsIpConnect.MAC %>></div>
+        </div>
+        <div class="am-form-group  am-g">
+            <div class="am-u-sm-3"><label for="">办公地点</label></div>
+            <div class="am-u-sm-9"><input type="text" class="am-form-field am-round" readonly="readonly" value=<%= detailsIpConnect.OfficeAddress %>></div>
+        </div>
+        <div class=" am-form-group am-g">
+            <div class="am-u-sm-3"><label for="">申请时间</label></div>
+            <div class="am-u-sm-9"><input type="text" class="am-form-field am-round"  readonly="readonly" value=<%= detailsIpConnect.Time %>>
+            </div>
+        </div>
+        <button type="submit" class="am-btn am-btn-default am-round" id="delete">删除</button>
+        <a href="/internet-connection-ip-next" class="am-btn am-btn-default am-round">返回</a>
+        <p><br/></p>
+    </fieldset>
+<%include footer %>

@@ -1,0 +1,332 @@
+<!-- content start -->
+<!--<button-->
+<!--type="button"-->
+<!--class="am-btn am-btn-primary"-->
+<!--data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 400, height: 225}"-->
+<!--style="display: none">-->
+<!--</button>-->
+<!--点击图片放大开始-->
+<div class="am-modal am-modal-no-btn am-modal-active" tabindex="-1" id="doc-modal-1" style="display: none;
+width: auto;margin-left: -200px;margin-top: -280px;">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">请填写MAC和IP地址
+            <a href="javascript: handleClick()" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+
+            <img src=<%=ipApplyW.imgP %> height="400px" width="400px" class="modal_ipApply"/>
+
+            <div>
+                <label for="mac">MAC地址:</label><input type="text" id="mac"/><br/>
+                <label>IP地址<input type="text"/></label>
+            </div>
+        </div>
+    </div>
+</div>
+<!--点击图片放大结束-->
+
+
+<div class="admin-content">
+    <!--左边表单头部开始-->
+    <div class="am-cf am-padding">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">表单</strong> /
+            <small>form</small>
+        </div>
+    </div>
+    <!--左边表单头部开始-->
+
+    <div class="am-tabs" data-am-tabs>
+        <!--标签页列表开始-->
+        <ul class="am-tabs-nav am-nav am-nav-tabs">
+            <li class="am-active"><a href="#tab1">待审核</a></li>
+            <li><a href="#tab2">处理结果</a></li>
+        </ul>
+        <!--标签页列表开始-->
+
+        <!--标签页内容开始-->
+        <div class="am-tabs-bd">
+            <!--待审核开始-->
+            <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+                <div class="am-panel-group" id="accordion1">
+                    <% ipApplyW.forEach(function(ipApplyW,index){ %>
+                    <div class="am-panel am-panel-default">
+                        <div class="am-panel-hd">
+                            <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion1', target: '#do-not-say-<%= ipApplyW.ID %>'}">
+                                用户名：<%= ipApplyW.Name %> 学院：<%= ipApplyW.Department %> 日期：<%= ipApplyW.Time %>
+                            </h4>
+                        </div>
+                        <div id="do-not-say-<%= ipApplyW.ID %>" class="am-panel-collapse am-collapse">
+                            <div class="am-panel-bd">
+                                <div style="height: 300px;margin-bottom: 10px">
+                                    <!--用户信息开始-->
+                                    <div style="width: 50%;float:left;background-color: #262626;color: #23abf0;opacity: 0.8;">
+                                        <div style="width: 80%;color:white;margin-top: 10px;margin-right: auto;margin-left: auto">
+                                            <h5 style="width:80%;margin-left: auto;margin-right: auto">
+                                                <div class="am-g">
+                                                    <div class="am-u-sm-5"> 用户名：</div>
+                                                    <div class="am-u-sm-7"><%= ipApplyW.Name %></div>
+                                                </div>
+                                                <div class="am-g">
+                                                    <div class="am-u-sm-5"> 联系方式：</div>
+                                                    <div class="am-u-sm-7"><%= ipApplyW.Contact %></div>
+                                                </div>
+                                                <div class="am-g">
+                                                    <div class="am-u-sm-5"> 学院：</div>
+                                                    <div class="am-u-sm-7"><%= ipApplyW.Department %></div>
+                                                </div>
+                                                <div class="am-g">
+                                                    <div class="am-u-sm-5"> 办公地址：</div>
+                                                    <div class="am-u-sm-7"> <%= ipApplyW.OfficeAddress %></div>
+                                                </div>
+                                                <div class="am-g">
+                                                    <div class="am-u-sm-5"> MAC:</div>
+                                                    <div class="am-u-sm-7"> <%= ipApplyW.MAC %></div>
+                                                </div>
+                                                <div class="am-g">
+                                                    <div class="am-u-sm-5"> 日期：</div>
+                                                    <div class="am-u-sm-7"> <%= ipApplyW.Time %></div>
+                                                </div>
+                                            </h5>
+                                        </div>
+                                        <hr data-am-widget="divider" style="" class="am-divider am-divider-default"/>
+                                        <!--审核开始-->
+                                        <form method="post" action="/admin-ipApply/<%= ipApplyW.ID %>/<%= ipApplyW.OpenId %>">
+                                            <div id="ipApplyInput">
+                                                <!--输入框开始-->
+                                                <div style="float: left;width: 75%;margin-bottom: 20px">
+                                                    <div class="am-input-group"
+                                                         style="width: 90%;margin-left: auto;margin-right: auto">
+                                                        <span class="am-input-group-label" style="width: 35%">IP地址</span>
+                                                        <input type="text" name="adminIP" maxlength="15" class="am-form-field" id="ipApplyIP" style="width: 100%">
+                                                    </div>
+                                                    <div class="am-input-group"
+                                                         style="width: 90%;margin-left: auto;margin-right: auto">
+                                                        <span class="am-input-group-label" style="width: 35%">MAC地址</span>
+                                                        <input type="text" name="adminMAC" maxlength="17" id="ipApplyMAC" class="am-form-field" style="width: 100%">
+                                                    </div>
+                                                    <div class="am-input-group"
+                                                         style="width: 90%;margin-left: auto;margin-right: auto">
+                                                        <span class="am-input-group-label" style="width: 35%">子网掩码</span>
+                                                        <input type="text" name="adminSubnetMask" id="ipApplyMask" class="am-form-field" style="width: 100%">
+                                                    </div>
+                                                    <div class="am-input-group"
+                                                         style="width: 90%;margin-left: auto;margin-right: auto">
+                                                        <span class="am-input-group-label" style="width: 35%">网关</span>
+                                                        <input type="text" name="adminGateway" id="adminGateway" class="am-form-field" style="width: 100%">
+                                                    </div>
+                                                    <div class="am-input-group"
+                                                         style="width: 90%;margin-left: auto;margin-right: auto">
+                                                        <span class="am-input-group-label" style="width: 35%">首选DNS</span>
+                                                        <input type="text" name="adminDNS" id="FDNS" class="am-form-field" style="width: 100%">
+                                                    </div>
+                                                    <div class="am-input-group"
+                                                         style="width: 90%;margin-left: auto;margin-right: auto">
+                                                        <span class="am-input-group-label" style="width: 35%">备用DNS</span>
+                                                        <input type="text" name="adminSpareDNS" id="ipApplyReserve" class="am-form-field" style="width: 100%">
+                                                    </div>
+                                                    <!--输入框结束-->
+                                                    <!--<label>MAC地址:<input type="text"/></label>-->
+                                                    <!--<label>IP  地址:<input type="text" /></label><br/>-->
+                                                </div>
+                                                <!--审核按钮开始-->
+                                                <div style="float:left;width: 25%;height: auto">
+                                                    <div style="height: 50%">
+                                                        <button type="button" id="ipApplyFail"
+                                                                class="am-btn am-btn-danger am-radius">审核未通过
+                                                        </button>
+                                                    </div>
+                                                    <div style="height: 50%;margin-top: 115px">
+                                                        <button type="submit" class="am-btn am-btn-success am-radius" id="ipApplySuccess">
+                                                            审 核 通 过
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <hr data-am-widget="divider" style="" class="am-divider am-divider-default"/>
+                                                <!--审核按钮结束-->
+                                            </div>
+                                        </form>
+                                        <hr data-am-widget="divider" style="" class="am-divider am-divider-default"/>
+                                        <form method="post" action="/admin-ipApply/<%= ipApplyW.ID %>/<%= ipApplyW.OpenId %>">
+                                            <div id="reason" style="display: none;text-align: center">
+                                                <label>未通过审核原因</label>
+                                                <textarea name="reason" style="width: 500px;height: 100px;"></textarea>
+                                                <button type="submit" id="ipApplyConfirm"
+                                                        class="am-btn am-btn-default am-round">确认
+                                                </button>
+                                                <button type="button" id="ipApplyCancel"
+                                                        class="am-btn am-btn-default am-round">取消
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!--审核结束-->
+                                    <!--用户信息结束-->
+                                    <!--图片开始-->
+                                    <div style="width: 50%;float: left;">
+                                        <div style="width: 80%;margin-right: auto;margin-left: auto;">
+                                            <img src=<%= ipApplyW.imgP %> class="ipApply" id="ipFinishImg"
+                                                 style="width:400px;height:444px;"/>
+                                        </div>
+                                    </div>
+                                    <!--图片结束-->
+                                </div>
+                                <hr data-am-widget="divider" style="" class="am-divider am-divider-default"/>
+                            </div>
+                        </div>
+                    </div>
+                    <%})%>
+                    <ul data-am-widget="pagination" class="am-pagination am-pagination-default">
+
+                        <li class="am-pagination-first ">
+                            <a href="#" class="">第一页</a>
+                        </li>
+
+                        <li class="am-pagination-prev ">
+                            <a href="/admin-ipApply?page=<%= page - 1 %>" class="">上一页</a>
+                        </li>
+
+
+                        <li class="">
+                            <a href="#" class="">1</a>
+                        </li>
+                        <li class="am-active">
+                            <a href="#" class="am-active">2</a>
+                        </li>
+                        <li class="">
+                            <a href="#" class="">3</a>
+                        </li>
+                        <li class="">
+                            <a href="#" class="">4</a>
+                        </li>
+                        <li class="">
+                            <a href="#" class="">5</a>
+                        </li>
+
+
+                        <li class="am-pagination-next ">
+                            <a href="/admin-ipApply?page=<%= page + 1 %>" class="">下一页</a>
+                        </li>
+
+                        <li class="am-pagination-last ">
+                            <a href="#" class="">最末页</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--待审核结束-->
+            <!--处理结果开始-->
+            <div class="am-tab-panel am-fade" id="tab2">
+                <div class="am-panel-group" id="accordion2">
+                    <% ipApplyF.forEach(function(ipApplyF,index){ %>
+                    <div class="am-panel am-panel-default">
+                        <div class="am-panel-hd">
+                            <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion2', target: '#do-not-say<%= ipApplyF.ID %>'}">
+                                用户名：<%= ipApplyF.Name %> 学院：<%= ipApplyF.Department %> 日期：<%= ipApplyF.Time %>
+                            </h4>
+                        </div>
+                        <div id="do-not-say<%= ipApplyF.ID %>" class="am-panel-collapse am-collapse">
+                            <div class="am-panel-bd">
+                                <div style="width: 50%;float: left;background-color: black;">
+                                    <div style="width: 80%;color:white;margin-top: 20px;margin-right: auto;margin-left: auto">
+                                        <h5 style="width:80%;margin-left: auto;margin-right: auto">
+                                            <div class="am-g">
+                                                <div class="am-u-sm-5"> 用户名：</div>
+                                                <div class="am-u-sm-7"><%= ipApplyF.Name %></div>
+                                            </div>
+                                            <div class="am-g">
+                                                <div class="am-u-sm-5"> 联系方式：</div>
+                                                <div class="am-u-sm-7"><%= ipApplyF.Contact %></div>
+                                            </div>
+                                            <div class="am-g">
+                                                <div class="am-u-sm-5"> 学院：</div>
+                                                <div class="am-u-sm-7"><%= ipApplyF.Department %></div>
+                                            </div>
+                                            <div class="am-g">
+                                                <div class="am-u-sm-5"> 办公地址：</div>
+                                                <div class="am-u-sm-7"> <%= ipApplyF.OfficeAddress %></div>
+                                            </div>
+                                            <div class="am-g">
+                                                <div class="am-u-sm-5"> MAC:</div>
+                                                <div class="am-u-sm-7"> <%= ipApplyF.MAC %></div>
+                                            </div>
+                                            <div class="am-g">
+                                                <div class="am-u-sm-5"> 日期：</div>
+                                                <div class="am-u-sm-7"> <%= ipApplyF.Time %></div>
+                                            </div>
+                                        </h5>
+                                    </div>
+                                    <hr data-am-widget="divider" style="" class="am-divider am-divider-default"/>
+                                    <form method="post" action="/admin-ipApply/<%= ipApplyF.ID %>">
+                                        <div id="ipFinishInput">
+                                            <!--输入框开始-->
+                                            <div style="width: 90%;margin-bottom: 20px;margin-left: auto;margin-right: auto;">
+                                                <div class="am-input-group" style="width: 90%;margin-left: auto;margin-right: auto;">
+                                                    <span class="am-input-group-label" style="width: 30%">IP地址</span>
+                                                    <input type="text" name="adminIP" value="<%= ipApplyF.adminIP %>" class="am-form-field" readonly="readonly" style="width: 100%">
+                                                </div>
+                                                <div class="am-input-group" style="width: 90%;margin-left: auto;margin-right: auto">
+                                                    <span class="am-input-group-label" style="width: 30%">MAC地址</span>
+                                                    <input type="text" name="adminMAC" value="<%= ipApplyF.adminMAC %>" class="am-form-field" readonly="readonly" style="width: 100%">
+                                                </div>
+                                                <div class="am-input-group" style="width: 90%;margin-left: auto;margin-right: auto">
+                                                    <span class="am-input-group-label" style="width: 30%">子网掩码</span>
+                                                    <input type="text" name="adminSubnetMask" value="<%= ipApplyF.adminSubnetMask %>" class="am-form-field" readonly="readonly" style="width: 100%">
+                                                </div>
+                                                <div class="am-input-group" style="width: 90%;margin-left: auto;margin-right: auto">
+                                                    <span class="am-input-group-label" style="width: 30%">首选DNS</span>
+                                                    <input type="text" name="adminDNS" value="<%= ipApplyF.adminDNS %>" class="am-form-field" readonly="readonly" style="width: 100%">
+                                                </div>
+                                                <div class="am-input-group" style="width: 90%;margin-left: auto;margin-right: auto">
+                                                    <span class="am-input-group-label" style="width: 30%">备用DNS</span>
+                                                    <input type="text" name="adminSpareDNS" value="<%= ipApplyF.adminSpareDNS %>" class="am-form-field" readonly="readonly" style="width: 100%">
+                                                </div>
+                                                <!--输入框结束-->
+                                                <!--<label>MAC地址:<input type="text"/></label>-->
+                                                <!--<label>IP  地址:<input type="text" /></label><br/>-->
+                                            </div>
+                                        </div>
+
+                                        <hr data-am-widget="divider" style="" class="am-divider am-divider-default"/>
+                                        <div style="text-align: center;margin-bottom: 10px">
+                                            <button type="submit" id="ipFinish"
+                                                    class="am-btn am-btn-default am-round">提交
+                                            </button>
+                                            <button type="button" id="ipFinishCompile"
+                                                    class="am-btn am-btn-default am-round">编辑
+                                            </button>
+                                            <button type="button" id="ipFinishCancel"
+                                                    class="am-btn am-btn-default am-round">取消
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div style="width: 50%;float:right;text-align: center">
+                                    <div style="width: 80%;margin-right: auto;margin-left: auto;">
+                                        <img src=<%= ipApplyF.imgP %> class="ipApply" id="ipApplyImg" style="width:400px;height:444px;"/>
+                                    </div>
+                                </div>
+                                <hr data-am-widget="divider" style="" class="am-divider am-divider-default"/>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div>
+            </div>
+            <!--处理结果结束-->
+
+        </div>
+        <!--标签页内容结束-->
+
+    </div>
+</div>
+<!--进度条-->
+<div class="am-progress">
+    <div class="am-progress-bar" style="width: 40%">40%</div>
+</div>
+<!--按钮-->
+<div class="am-margin">
+    <button type="button" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
+    <button type="button" class="am-btn am-btn-primary am-btn-xs">放弃保存</button>
+</div>
+</div>
+<!-- content end -->

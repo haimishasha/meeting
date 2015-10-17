@@ -1,0 +1,54 @@
+<%-include header.ejs%>
+<form method="post" enctype="multipart/form-data">
+
+</form>
+  <fieldset>
+    <legend>待审核IP详情:</legend>
+    <div class="am-form-group">
+      <label for="">姓名</label>
+      <input type="text" class="am-form-field am-round"  readonly="readonly" value=<%= unapprovedDataSet.Name %>>
+    </div>
+    <div class="am-form-group">
+      <label for="">联系方式</label>
+      <input type="text" class="am-form-field am-round"  readonly="readonly" value=<%= unapprovedDataSet.Contact %>>
+    </div>
+    <div class="am-form-group">
+      <label for="">MAC地址</label>
+      <input type="text" class="am-form-field am-round"  readonly="readonly" value=<%= unapprovedDataSet.MAC %>>
+    </div>
+    <div class="am-form-group">
+      <label for="doc-ipt-address-1">办公地点</label>
+      <input name="OfficeAddress" type="text" readonly="readonly" value="<%= unapprovedDataSet.OfficeAddress %>" class="am-form-field am-round" placeholder="请详细指明所在楼栋" required="required">
+    </div>
+    <div class="am-form-group">
+      <label for="doc-select-1">所在院系</label>
+      <select name="Department" id="doc-select-1">
+        <option value="计算机科学与技术学院">计算机科学与技术学院</option>
+        <option value="机械学院">机械学院</option>
+        <option value="艺术学院">艺术学院</option>
+        <option value="体育学院">体育学院</option>
+        <option value="人文社科学院">人文社科学院</option>
+        <option value="环境学院">环境学院</option>
+        <option value="电子学院">电子学院</option>
+        <option value="经济管理学院">经济管理学院</option>
+        <option value="应科学院">应科学院</option>
+      </select>
+      <span class="am-form-caret"></span>
+    </div>
+    <div class="am-form-group">
+      <label for="">申请时间</label>
+      <input type="text" class="am-form-field am-round"  readonly="readonly" value=<%= unapprovedDataSet.Time %>>
+    </div>
+    <div class="am-form-group">
+      <label for="">未通过原因</label>
+      <textarea><%= unapprovedDataSet.reason %></textarea>
+    </div>
+    <div class="am-form-group" id="addPicture"></div>
+    <button  class="am-btn am-btn-default am-round " id="alter">修改资料</button>
+    <button  class="am-btn am-btn-default am-round" id="resave">保存修改</button>
+    <button  class="am-btn am-btn-default am-round" id="cancel">取消申请</button>
+    <p></p>
+    <a href="/internet-connection-ip-next" class="am-btn am-btn-default am-round">返回</a>
+    <p><br/></p>
+  </fieldset>
+<%include footer.ejs %>

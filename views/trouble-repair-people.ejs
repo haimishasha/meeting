@@ -1,0 +1,81 @@
+<%-include header.ejs%>
+<div class="am-tabs" data-am-tabs>
+    <ul class="am-tabs-nav am-nav am-nav-tabs" >
+        <li class="am-active width-li" ><a href="#tab1">待解决故障</a></li>
+        <li class="width-li"><a href="#tab2">已解决故障</a></li>
+    </ul>
+
+    <div class="am-tabs-bd">
+        <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+            <div class="am-g" style="text-align: center">
+                <div class="am-u-sm-3" >
+                    <label for="doc-ipt-ip-1"><h4>待解决:</h4></label>
+                </div>
+                <div class="am-u-sm-6">
+                    <div class="am-form-group" >
+                        <a href="/trouble-people-details"><h1>2015/8/10</h1> </a>
+                    </div>
+                </div>
+                <div class="am-u-sm-3" >
+                    <a href="/trouble-people-details" class="am-btn am-btn-default am-round" style="padding: 10px;background-color:#b2e2fa">详情</a>
+                </div>
+                <hr data-am-widget="divider" style="border-width: 2px;border-color: #0084c7" class="am-divider am-divider-dashed" />
+            </div>
+            <div class="am-g" style="text-align: center">
+                <div class="am-u-sm-3" >
+                    <label for="doc-ipt-ip-1"><h4>待解决:</h4></label>
+                </div>
+                <div class="am-u-sm-6">
+                    <div class="am-form-group" >
+                        <a href="/trouble-people-details"><h1>2015/8/10</h1> </a>
+                    </div>
+                </div>
+                <div class="am-u-sm-3" >
+                    <a href="/trouble-people-details" class="am-btn am-btn-default am-round" style="padding: 10px;background-color:#b2e2fa">详情</a>
+                </div>
+                <hr data-am-widget="divider" style="border-width: 2px;border-color: #0084c7" class="am-divider am-divider-dashed" />
+            </div>
+            <a href="/trouble-repair-people-apply" class="am-btn am-btn-default add">+</a>
+
+        </div>
+
+
+        <div class="am-tab-panel am-fade" id="tab2">
+            <div class="am-g" style="text-align: center">
+                <div class="am-u-sm-3">
+                    <label for="doc-ipt-ip-1"><h4>已解决:</h4></label>
+                </div>
+                <div class="am-u-sm-6">
+                    <div class="am-form-group">
+                        <a href="/trouble-people-details2">
+                            <h1>2015/8/14</h1>
+                        </a>
+                    </div>
+                </div>
+                <div class="am-u-sm-3">
+                    <a href="/trouble-people-details2" class="am-btn am-btn-default am-round" style="padding: 10px;background-color:#b2e2fa">详情</a>
+                </div>
+                <hr data-am-widget="divider" style="border-width: 2px;border-color: #0084c7" class="am-divider am-divider-dashed" />
+            </div>
+
+            <div class="am-g" style="text-align: center">
+                <div class="am-u-sm-3">
+                    <label for="doc-ipt-ip-1"><h4>已解决:</h4></label>
+                </div>
+                <div class="am-u-sm-6">
+                    <div class="am-form-group">
+                        <a href="/trouble-people-details2">
+                            <h1>2015/8/15</h1>
+                        </a>
+                    </div>
+                </div>
+                <div class="am-u-sm-3">
+                    <a href="/trouble-people-details2" class="am-btn am-btn-default am-round" style="padding: 10px;background-color:#b2e2fa">详情</a>
+                </div>
+                <hr data-am-widget="divider" style="border-width: 2px;border-color: #0084c7" class="am-divider am-divider-dashed" />
+            </div>
+
+        </div>
+    </div>
+</div>
+<%include footer.ejs %>

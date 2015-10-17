@@ -1,0 +1,19 @@
+<%- include admin-header %>
+<div class="logindiv">
+    <form action="/admin/login<%= url %>" method="post" class="am-form" data-am-validator>
+        <fieldset>
+            <legend id="login-id">登陆</legend>
+            <div class="am-form-group">
+                <label for="doc-vld-name-2">用户名：</label>
+                <input type="text" id="doc-vld-name-2" name="username" required/>
+            </div>
+            <div class="am-form-group">
+                <label for="doc-vld-password-1">密码：</label>
+                <input type="password" id="doc-vld-password-1" name="password" required/>
+            </div>
+            <button class="am-btn am-btn-success" type="button" onclick="login()">登陆</button>
+            <a href="/admin/reg" class="am-btn am-btn-success">注册</a>
+        </fieldset>
+    </form>
+</div>
+<%- include admin-footer %>

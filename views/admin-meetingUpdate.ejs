@@ -1,0 +1,64 @@
+
+<%- include admin-header %>
+<%- include admin-mleft %>
+<form class="am-form" method="post" enctype="multipart/form-data"/>
+    <fieldset>
+        <legend>会议注册</legend>
+<div style="width: 35%;position: absolute;left: 300px;top: 100px">
+        <div class="am-form-group">
+            <label for="doc-ipt-text">会议题目</label>
+            <input type="text" class="" id="doc-ipt-text" name="Title" value=<%= meeting.Title %> />
+        </div>
+        <div class="am-form-group">
+            <label for="doc-ipt-organizer">大会主办方</label>
+            <input type="text" class="" id="doc-ipt-organizer" name="organizer" value=<%= meeting.organizer %> />
+        </div>
+        <div class="am-form-group">
+            <label for="doc-ipt-address">会议地点</label>
+            <input type="text" class="" id="doc-ipt-address" name="address" value=<%= meeting.address %> />
+        </div>
+        <div class="am-form-group">
+            <label for="doc-ipt-time">会议时间</label></br>
+            <lable for="datetimepicker11">开始时间</lable>
+            <input type="text" id="datetimepicker11" name="startTime" value=<%= meeting.startTime %> />
+            <lable for="datetimepicker111">结束时间</lable>
+            <input type="text" id="datetimepicker111" name="endTime" value=<%= meeting.endTime %> />
+        </div>
+    <div class="am-form-group">
+        <label for="doc-ipt-peopleNum">会议人数设定</label>
+        <input type="number" class="" id="doc-ipt-peopleNum" name="maxNum" value=<%= meeting.maxNum %> placeholder="输入会议人数上限">
+    </div>
+</div>
+        <div style="width: 35% ;position: absolute;left: 60%;top: 100px">
+        <div class="am-form-group">
+            <label for="doc-ipt-ibeacon">会议IBeacon绑定</label>
+            <select multiple class="" id="doc-ipt-ibeacon" name="ibeacon">
+                <% ibeacons.forEach(function(ibeacon){ %>
+                <option><%= ibeacon.id %></option>
+                <%})%>
+            </select>
+            <!--<input type="text" class="" id="doc-ipt-ibeacon" name="ibeacon" value=<%= meeting.ibeacon %> />-->
+        </div>
+        <div class="am-form-group">
+            <label for="doc-ta-intro">会议简介</label>
+            <textarea class="" rows="5" id="doc-ta-intro" name="intro"><%= meeting.intro %></textarea>
+        </div>
+            <div class="am-form-group" >
+                <label>参加会议者提前注册： </label>
+                <label class="am-radio-inline">
+                    <input type="radio" value="1" name="reg"> 是
+                </label>
+                <label class="am-radio-inline">
+                    <input type="radio" value="0" name="reg"> 否
+                </label>
+            </div>
+        <div class="am-form-group">
+            <label for="doc-ipt-file-upload">会议资料上传</label>
+            <input type="file" id="doc-ipt-file-upload" name="material" />
+            <p class="am-form-help">请选择要上传的文件...</p>
+        </div>
+            </div>
+        <p style="position: absolute;top: 500px;left: 90%"><button type="submite" class="am-btn am-btn-success">修改</button></p>
+    </fieldset>
+</form>
+<%- include admin-footer %>

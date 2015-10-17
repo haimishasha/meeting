@@ -1,0 +1,32 @@
+<%- include header1 %>
+<form method="get" >
+<table class="am-table">
+
+	<thead>
+	<tr>
+	<div class="am-g wrap">
+		<div class="am-u-sm-2 borderstyle">序号</div>
+		<div class="am-u-sm-4 borderstyle">单位</div>
+		<div class="am-u-sm-3 borderstyle">姓名</div>
+		<div class="am-u-sm-3 borderstyle">点击详情</div>
+    </div>
+    </tr>
+	</thead>
+	<tbody>
+		<% if(signerArrived){ %>
+			<% signerArrived.forEach(function (signer, index) { %>
+			    <% if (signer) { %>
+			    <% signer.index = index + 1 %>
+			     	<tr class="am-active">
+			 			<td class="borderstyle"><%= signer.index %></td>
+						<td class="borderstyle"><%= signer.company %></td>
+                        <td class="borderstyle"><%= signer.truename %></td>
+                        <td class="borderstyle"><a href="/showcard/<%= meetingid %>/<%= signer.openid %>" class="borderstyle">点击详情</a></td>
+					</tr>	
+				<% } %>
+			<% }) %>
+		<% } %>
+	</tbody>
+</table>
+</form>
+<%- include footer1 %>

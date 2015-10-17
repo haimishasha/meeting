@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>personInfo</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+  <link rel="stylesheet" href="/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="/signin/info.css">
+</head>
+<body>
+	<header data-am-widget="header" class="am-header am-header-default">
+      <div class="am-header-left am-header-nav">
+          <div onclick="javascript:history.go(-1)" class="">
+              <img class="am-header-icon-custom" src="data:image/svg+xml;charset=utf-8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 20&quot;&gt;&lt;path d=&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill=&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""/>
+          </div>
+      </div>
+  </header>
+  <div class="am-g wrap">
+		<div class="am-u-md-8">
+			<div class="info">
+				姓名:<%= signer.truename%>
+			</div>
+			<div class="info">
+				邮箱:<%= signer.email%>
+			</div>
+			<div class="info">
+				工作电话:<%= signer.connect%>
+			</div>
+			<div class="info">
+				移动电话:<%= signer.telephone%>
+			</div>
+			<div class="info">
+				工作单位:<%= signer.company%>
+			</div>
+			<div class="info">
+				职位:<%= signer.job%>
+			</div>
+			<div class="info">
+				QQ:<%= signer.qq%>
+			</div>
+			<button type="button" class="am-btn am-btn-block am-btn-primary am-radius save" data-am-modal="{target: '#doc-modal-1'}"><a href="/signincard/<%= meetingid%>/<%= signer.openid %>">保存到通讯录</a></button>
+
+			<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+			  <!-- <div class="am-modal-dialog"> -->
+			    <!-- <div class="am-modal-hd"> -->
+			      <span data-am-modal-close class="am-close" class="close">&times;</span>
+			      <img src="/signin/live_weixin.png" id="noteImg" alt="">
+
+			    <!-- </div> -->
+			  <!-- </div> -->
+			</div>
+
+
+
+		</div>
+	</div>
+	
+	<!-- <div class="save-img">
+		<img src="/signin/img/save-img.png" class="save-img" alt="">
+	</div> -->	
+
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/amazeui.min.js"></script>
+		
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

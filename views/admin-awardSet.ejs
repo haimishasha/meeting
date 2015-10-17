@@ -1,0 +1,85 @@
+<%- include admin-header %>
+<%- include admin-mleft %>
+<form class="am-form" method="post" action="/admin/awardSetL?meetingId=<%= meetingId %>">
+    <fieldset>
+        <legend><%= title %><p class="am-article-meta">（以下两种抽奖方式您只需要填写其中一种方式提交即可）</p></legend>
+        <div style="width: 60%;position:relative;left:5% ">
+        <div class="am-g">
+        <div class="am-u-sm-6">
+            <h1 class="am-article-hd">方式一</h1>
+
+            <div class="am-input-group" stytle="text-align:center">
+            <span class="am-badge am-badge-success "><i class="am-icon-user am-icon-fw"></i>一等奖</span>
+            </div>
+            <div class="am-input-group">
+                <span class="am-input-group-label"><i class="am-icon-user"></i>抽奖人数</span>
+                <input type="text" class="am-form-field" name="liveAwardNum_1" />
+            </div>
+            <div class="am-input-group">
+                <span class="am-input-group-label"><i class="am-icon-gift"></i>奖品名称</span>
+                <input type="text" class="am-form-field" name="livePrize_1" />
+            </div>
+        </div>
+        <div class="am-u-sm-6">
+            <h1 class="am-article-hd">方式二</h1>
+
+            <div class="am-input-group">
+                <span class="am-badge am-badge-success"><i class="am-icon-user am-icon-fw"></i>按人数</span>
+            </div>
+            <div class="am-input-group">
+                <span class="am-input-group-label"><i class="am-icon-user"></i>抽奖人数</span>
+                <input type="text" class="am-form-field" name="liveAwardNum_0" />
+            </div>
+            <div class="am-input-group">
+                <span class="am-input-group-label"><i class="am-icon-gift"></i>奖品名称</span>
+                <input type="text" class="am-form-field" name="livePrize_0" />
+            </div>
+
+        </div>
+        </div>
+
+        <div class="am-g">
+        <div class="am-u-sm-6">
+            <div class="am-input-group">
+                <span class="am-badge am-badge-success "><i class="am-icon-user am-icon-fw"></i>二等奖</span>
+            </div>
+            <div class="am-input-group">
+                <span class="am-input-group-label"><i class="am-icon-user"></i>抽奖人数</span>
+                <input type="text" class="am-form-field" name="liveAwardNum_2" />
+            </div>
+            <div class="am-input-group">
+                <span class="am-input-group-label"><i class="am-icon-gift"></i>奖品名称</span>
+                <input type="text" class="am-form-field" name="livePrize_2" />
+            </div>
+
+        </div>
+        </div>
+
+            <div class="am-g">
+        <div class="am-u-sm-6">
+            <div class="am-input-group">
+                <span class="am-badge am-badge-success"><i class="am-icon-user am-icon-fw"></i>三等奖</span>
+            </div>
+            <div class="am-input-group">
+                <span class="am-input-group-label"><i class="am-icon-user"></i>抽奖人数</span>
+                <input type="text" class="am-form-field" name="liveAwardNum_3" />
+            </div>
+            <div class="am-input-group">
+                <span class="am-input-group-label"><i class="am-icon-gift"></i>奖品名称</span>
+                <input type="text" class="am-form-field" name="livePrize_3" />
+            </div>
+        </div>
+        </div>
+
+        <button type="submit" class="am-btn "
+                style="position: absolute;left: 75%;top: 85%">
+            <span class="am-icon-motorcycle am-icon-sm"></span>
+            <span class="am-icon-motorcycle"></span>
+            提交
+            <span class="am-icon-motorcycle"></span>
+
+        </button>
+    </div>
+    </fieldset>
+</form>
+<%- include admin-footer %>

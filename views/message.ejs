@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+    <title>会议留言</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="assets/i/app-icon72x72@2x.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI">
+    <link rel="apple-touch-icon-precomposed" href="/assets/i/app-icon72x72@2x.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+    <meta name="msapplication-TileColor" content="#0e90d2">
+
+    <link rel="stylesheet" href="/assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <script src="/assets/js/jquery.min.js"></script>
+    <script id="b5mmain" type="text/javascript" charset="utf-8"
+            src="http://plugin.bang5mai.com/assets/main/js/b5m.main.js?source=99999chrome&amp;version=6.0.5.2&amp;uuid=d48bfbc84b8d47abaef8f1cd37a1fa88&amp;v=2015101&amp;url=http%3A%2F%2Flocalhost%3A3000%2Fmessage"></script>
+    <link rel="stylesheet" href="http://plugin.bang5mai.com/assets/main/css/b5m-plugin.qks.css?v=20150930203149"
+          type="text/css">
+    <link type="text/css" rel="stylesheet" href="http://static.duoshuo.com/styles/embed.default.css?080f31b2.css">
+
+</head>
+
+<body>
+<div id="messages">
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-2">
+        <div class="ds-replybox" style="position: relative;left: 50%;margin-left: -10px"><a class="ds-avatar"><img width="52" height="52" src="<%= headimgurl %>"></a>
+        </div>
+    </div>
+    <div class="am-u-sm-10">
+        <div class="ds-textarea-wrapper ds-rounded-top">
+                <textarea class="am-article-lead" style="width: 90%" id="m" name="message" title="Ctrl+Enter快捷提交"
+                          placeholder="会议留言点此处…"></textarea>
+        </div>
+        <div style="width: 90%;background-color: #d9dadc" align="right">
+            <button id="btn" class=" am-btn-success" type="submit" onclick="dd()">
+                发布
+            </button>
+        </div>
+    </div>
+</div>
+<p class="ds-powered-by"><a> Keycool会议系统</a></p>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/javascripts/jquery-2.1.4.min.js"></script>
+<script>
+    var socket = io();
+    var username = '<%= username %>';//微信用户名        //username = "" ;
+    var headimgurl = '<%= headimgurl %>';
+    var myDate = new Date();
+    console.log('3');
+    /*$('#btn').click(function()*/
+    function dd() {
+        if (!$('#m').val()) {
+            alert("不能发送空消息！");
+        }
+        else {
+            socket.emit('chat message', headimgurl+ "##" +  username + "##" + $('#m').val() + "##" + myDate.getMonth() + "-" + myDate.getDate() + " " + myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds());
+        }
+
+
+    }
+    $('#messages').append('<div data-am-widget="duoshuo" class="am-duoshuo am-duoshuo-default am-no-layout" data-ds-short-name="amazeui"><div class="ds-thread" id="ds-thread"><div id="ds-reset" class="ds-touch"><!--按时间顺序排列参会者留言部分--><ul class="ds-comments">');
+    socket.on('chat message', function (msg) {
+        var item = msg.split("##", 4);
+        if (msg.indexOf('lyd__') == 0)
+            $('#messages').append('<li style="text-align:center; font-size:12px;margin-top:1px; color:red; background-color:#eee;">' + msg.substr(5) + '</li>');
+        else{
+            $('#messages').append('<div class="am-g"><div class="am-u-sm-2"><div class="ds-avatar" ><img width="52" height="52"src="'+item[0]+'"><!--用户微信头像--></div><div class="ds-comment-header"><a class="ds-user-name ds-highlight">'+item[1]+'</a><!--用户微信昵称--></div></div><div class="am-u-sm-10"><div class="ds-comment-body"<p>'+item[2]+'</p><!-- 用户的留言--><div class="ds-comment-footer ds-comment-actions ds-post-liked"><span class="ds-time" >'+item[3]+'</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶(2)</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></div>');
+        }
+    });
+</script>
+</body>
+</html>
+

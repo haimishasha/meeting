@@ -1,0 +1,48 @@
+<%-include header.ejs%>
+<form class="am-form" enctype="multipart/form-data">
+    <fieldset>
+        <legend>已解决故障详情:</legend>
+        <div class=" am-form-group am-g">
+            <div class="am-u-sm-3"><label for="">姓名</label></div>
+            <div class="am-u-sm-9"><input type="text" class="am-form-field am-round" readonly="readonly">
+            </div>
+        </div>
+        <div class=" am-form-group am-g">
+            <div class="am-u-sm-3"><label for="">联系方式</label></div>
+            <div class="am-u-sm-9"><input type="text" class="am-form-field am-round" readonly="readonly">
+            </div>
+        </div>
+        <div class="am-form-group  am-g">
+            <div class="am-u-sm-3"><label for="">办公地点</label></div>
+            <div class="am-u-sm-9"><input type="text" class="am-form-field am-round" readonly="readonly">
+            </div>
+        </div>
+        <div class="am-form-group  am-g">
+            <div class="am-u-sm-3"><label for="">所在院系</label></div>
+            <div class="am-u-sm-9"><input type="text" class="am-form-field am-round" readonly="readonly">
+            </div>
+        </div>
+        <div class=" am-form-group am-g">
+            <div class="am-u-sm-3"><label for="">解决时间</label></div>
+            <div class="am-u-sm-9"><input type="date" class="am-form-field am-round"  readonly="readonly">
+            </div>
+        </div>
+        <div class=" am-form-group am-g">
+            <div class="am-u-sm-3"><label for="">派工人员</label></div>
+            <div class="am-u-sm-9"><input type="date" class="am-form-field am-round"  readonly="readonly">
+            </div>
+        </div>
+        <div class=" am-form-group am-g">
+            <div class="am-u-sm-3"><label for="">派工人员联系方式</label></div>
+            <div class="am-u-sm-9"><input type="date" class="am-form-field am-round"  readonly="readonly">
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label for="doc-ta-1">故障详情</label>
+            <textarea class="" rows="5"  readonly="readonly" ></textarea>
+        </div>
+        <a href="/trouble-repair-people" class="am-btn am-btn-default am-round">返回</a>
+        <p><br/></p>
+    </fieldset>
+</form>
+<%include footer.ejs %>

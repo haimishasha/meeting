@@ -1,0 +1,73 @@
+<%- include admin-header %>
+<div class="am-g">
+  <div class="am-u-sm-3">
+  <%- include admin-mleft %>
+  </div>
+  <div class="am-u-sm-9">
+    <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" >
+      <h2 class="am-titlebar-title ">
+        我的抽奖
+      </h2>
+        <div style="position: absolute ;left:15%">
+      <a href="/admin/awardSet?meetingId=<%= meetingId %>"><span class="am-icon-plus am-icon-sm"></span>新建抽奖</a>
+        </div>
+    </div>
+        <% if(award){ %>
+        <div class="am-g">
+        <div class="am-u-sm-8">
+            <table class="am-table">
+                <thead>
+                    <tr>               
+                        <th><a href="/admin/awardRemove?meetingId=<%= award.meetingId %>"><span class="am-icon-trash-o am-icon-sm"></span>删除</a></th>                
+                        <th><a><span class="am-icon-male am-icon-sm"></span>抽奖人数</a></th>
+                        <th><a><span class="am-icon-trophy am-icon-sm"></span>奖品</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="am-icon-gift"></span>一等奖</td>
+                        <td><%= award.livePrizeArray[1].liveAwardNum %></td>
+                        <td><%= award.livePrizeArray[1].livePrize %></td>
+                    </tr> 
+                    <tr>
+                        <td><span class="am-icon-gift"></span>二等奖</td>
+                        <td><%= award.livePrizeArray[2].liveAwardNum %></td>
+                        <td><%= award.livePrizeArray[2].livePrize %></td>
+                    </tr> 
+                    <tr>
+                        <td><span class="am-icon-gift"></span>三等奖</td>
+                        <td><%= award.livePrizeArray[3].liveAwardNum %></td>
+                        <td><%= award.livePrizeArray[3].livePrize %></td>
+                    </tr>
+                    <tr>
+                        <td><span class="am-icon-group"></span>按人数</td>
+                        <td><%= award.livePrizeArray[0].liveAwardNum %></td>
+                        <td><%= award.livePrizeArray[0].livePrize %></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="am-u-sm-4">
+            <table class="am-table">
+                <thead>
+                    <tr>
+                        <th><a><span class="am-icon-ils am-icon-sm"></span>抽奖控制</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><button type="button" class="am-btn am-btn-success">抽奖开始</button></td>
+                    </tr>
+                    <tr>
+                        <td><a href="/admin/awardUpdate?meetingId=<%= award.meetingId %>" class="am-btn am-btn-secondary">抽奖修改</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+        <% } %>
+  </div>
+</div>
+
+
+<%- include admin-footer %>
