@@ -5,24 +5,24 @@
     <div data-am-widget="tabs"
        class="am-tabs am-tabs-default">
       <ul class="am-tabs-nav am-cf wrap">
-      <li class="am-active" style="display: none"><a href="[data-tab-panel-0]"></a></li>
       <% var l = 1; %>
+      <% var active = "am-active"; %>
       <% days.forEach(function(day){%>
-      <li class=""><a href="[data-tab-panel-<%= l %>]"><%= day %></a></li>
+      <li class=<%= active %> ><a href="[data-tab-panel-<%= l %>]"><%= day %></a></li>
+      <% active = ""; %>
       <% l++; %>
       <% console.log(l) %>
       <%})%>
           
       </ul>
       <div class="am-tabs-bd">
-          <div data-tab-panel-0 class="am-tab-panel am-active wrap">
-          </div>
         <% var j = 0; %>
+        <% var active1 = "am-active"; %>
         <% days.forEach(function(day){%>
-        <div data-tab-panel-<%= j+1 %> class="am-tab-panel" align="center">
+        <div data-tab-panel-<%= j+1 %> class="am-tab-panel <%= active1 %>" align="center">
               <div class="am-g">
-              <div class="am-u-sm-4">时间</div>
-              <div class="am-u-sm-4">主讲人</div>
+              <div class="am-u-sm-3">时间</div>
+              <div class="am-u-sm-5">主讲人</div>
               <div class="am-u-sm-4">题目</div>
               <hr data-am-widget="divider" style="" class="am-divider am-divider-default hrStyle"/>
               </div>
@@ -33,8 +33,8 @@
                       <%if(i.length == j+1){%>
                       <% while(m < meetingschedule[i].length){ %>
                       <div class="am-g">
-                      <div class="am-u-sm-4"><%= meetingschedule[i][m] %>-<%= meetingschedule[i][m+1] %></div>
-                      <div class="am-u-sm-4"><%= meetingschedule[i][m+2] %></div>
+                      <div class="am-u-sm-3"><%= meetingschedule[i][m] %>-<%= meetingschedule[i][m+1] %></div>
+                      <div class="am-u-sm-5"><%= meetingschedule[i][m+2] %></div>
                       <div class="am-u-sm-4"><%= meetingschedule[i][m+3] %></div>
                       <hr data-am-widget="divider" style="" class="am-divider am-divider-default hrStyle" />
                       </div>
@@ -45,6 +45,7 @@
               <%})();%>
         </div>
         <% j++; %>
+        <% active1 = ""; %>
         <%})%>
       </div>
   </div>
