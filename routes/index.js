@@ -15,7 +15,7 @@ var config = {
 module.exports = function(app){
     /***********************************************/
     app.get('/',function(req,res){
-        res.redirect('/admin');
+        res.render('index');
     });
     app.get('/adminaward',function(req,res){
         res.redirect('/admin/award/2fo66bn3neuhm2t9');

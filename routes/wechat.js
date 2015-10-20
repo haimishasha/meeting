@@ -69,10 +69,10 @@ exports.wechat = wechat(config.weixinConfig, function (req, res, next) {
                 });
                 res.reply([
                     {
-                        title: '感谢您关注Shake官方微信',
-                        description: '您可以访问我们的微网站获取更多的信息。',
-                        picurl: 'http://shake.wisewechat.com/img/module8.jpg',
-                        url: 'http://shake.wisewechat.com/home'
+                        title: '欢迎参加‘2015’山西省教育科研网暨高校信息化建设会议',
+                        description: '点击注册签到',
+                        picurl: 'http://210.31.104.110/images/welcom360.jpg',
+                        url: 'http://netwechat.tyust.edu.cn/sign/2fo66bn3neuhm2t9'
                     }
                 ]);
                 break;

@@ -35,3 +35,40 @@ a {
 .guaguap{
     background-color: #777777;
 }
+.block{
+    background:rgba(0,0,0,0.3);
+    width: 150px;
+    height: 150px;
+   font-size: large;
+    font-weight: 700;
+    color: white;
+   text-align: center;
+    position:absolute;
+    left:50%;
+    top:270px;
+}
+.block1{
+    position: relative;
+    top: 40px;
+
+}
+.endblock{
+    background:rgba(0,0,0,0.4);
+    position:fixed;
+    height: 7%;
+    top: 93%;
+    width:100%;
+    color:white;
+}
+.position-left{
+
+    margin-left:150px;
+
+}
+.position-center{
+
+    margin-left:-75px;
+}
+.position-right{
+    margin-left:-300px;
+}

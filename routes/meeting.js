@@ -226,12 +226,24 @@ app.get('/admin/signinCreate',function(req,res){
 			adminUser: req.session.user,
 			meetingId: req.query.meetingId
 		};
-		var data = req.body;
-		console.log(data);
-		//判断是否有文件上传
-		if(req.files.material){
-			data.material = req.files.material.path;
+		var material = new Array();
+		if(req.files.material == undefined){
+		  material = [];
+		}else{
+			//判断上传是否为多文件
+			if(req.files.material.length){
+				//遍历上传文件保存到数组中
+				var i = 0;
+				req.files.material.forEach(function(m){
+					material[i] = "uploadFiles/" + m.name;
+					i++;
+				});
+			}else{
+				material[0] = "uploadFiles/" + req.files.material.name;
+			}
 		}
+		var data = req.body;
+		data.material = material;
 		//更新数据
 		Meeting.update(query,data,function(err,result){
 			if(err){
@@ -551,7 +563,8 @@ transport.sendMail(mailOptions, function(error, response) {
 	});
 
 	//下载资料
-	app.get('/getMaterials/:meetingId',function(req,res){
+	app.get('/getMaterials/:meetingId/:filename',function(req,res){
+		var filename = req.params.filename;
 		var query = {
 			meetingId : req.params.meetingId
 		};
@@ -559,16 +572,18 @@ transport.sendMail(mailOptions, function(error, response) {
 			if(err){
 				console.log(err);
 			}
-			console.log(result)
+			console.log(result);
 			if(result){
 				var materials = result.material;
 				materials.forEach(function (material,index){
-					var filename = material.substring(material.lastIndexOf('/') + 1),
-					    writestream = fs.createWriteStream(material);
-					 
-					http.get(material, function (res) {
-						res.pipe(writestream);
-						});
+					var name=material.split("/") 
+					console.log("name");
+					console.log(name);
+					if(name[1] == filename){
+						material = "public/"+material;
+						console.log(material);
+						res.download(material);
+					}
 				});
 			}else{
 				res.render('error', {

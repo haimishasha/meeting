@@ -63,7 +63,7 @@ function Mhidden(){
   var s = $('#datetimepicker1m').val();
   var e = $('#datetimepicker110m').val();
   var m = $('#meetingInfm').val();
-  var k = $('#speaker').val();
+  var k = $('#speakerm').val();
   $('.Mhidden').append('<tr>' +
                         '<td><input name='+ hidden +' '+ 'type="text" value=' + s + '></td>' +
                         '<td><input name='+ hidden +' '+'type="text" value=' + e + '></td>' +
@@ -73,10 +73,10 @@ function Mhidden(){
 
 }
 function Ahidden(){
-  var s = $('#datetimepicker1m').val();
-  var e = $('#datetimepicker110m').val();
-  var m = $('#meetingInfm').val();
-  var k = $('#speaker').val();
+  var s = $('#datetimepicker1a').val();
+  var e = $('#datetimepicker110a').val();
+  var m = $('#meetingInfa').val();
+  var k = $('#speakera').val();
   $('.Ahidden').append('<tr>' +
                         '<td><input name='+ hidden +' ' + 'type="text" value=' + s + '></td>' +
                         '<td><input name='+ hidden +' ' +'type="text" value=' + e + '></td>' +
@@ -86,14 +86,37 @@ function Ahidden(){
 
 }
 function Ehidden(){
-  var s = $('#datetimepicker1m').val();
-  var e = $('#datetimepicker110m').val();
-  var m = $('#meetingInfm').val();
-  var k = $('#speaker').val();
+  var s = $('#datetimepicker1e').val();
+  var e = $('#datetimepicker110e').val();
+  var m = $('#meetingInfe').val();
+  var k = $('#speakere').val();
   $('.Ehidden').append('<tr>' +
                         '<td><input name='+ hidden + ' ' +'type="text" value=' + s + '></td>' +
                         '<td><input name='+ hidden +' ' +'type="text" value=' + e + '></td>' +
                         '<td><input name='+ hidden +' '+'type="text" value=' + k + '></td>' +
                         '<td><input name='+ hidden +' '+'type="text" value=' + m + '></td>' +
                     '</tr>');
+}
+
+
+
+function meetingdownload(){
+  var selecteds = $("#download :selected");
+  var meetingid = $("#download").attr('name');
+  console.log(selecteds);
+  var i = 0;
+  while(i < selecteds.length){
+    var filename = selecteds[i].value;
+    var url = '/getMaterials/' + meetingid + '/' + filename;
+    /*jQuery.ajax(url);*/
+    var href = 'http://netwechat.tyust.edu.cn/getMaterials/jv7gon6awq2utyb9/' + filename;
+    window.location.assign(href);
+    console.log(href);
+    i++;
+  }
+  /*selecteds.forEach(function(selected){
+    var filename = selected.value;
+    var url = '/getMaterials/:' + meetingid + '/:' + filename;
+    jQuery.ajax(url);
+  })*/
 }
