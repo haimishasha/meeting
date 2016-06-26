@@ -61,6 +61,10 @@ module.exports = function(app) {
   app.post('/signup_past/:meetingid', signin.signup_pastp);
   //参会人员签到
   app.get('/sign/:meetingid',signin.sign);
+  //参会人员签到
+  app.post('/sign/:meetingid',signin.signp);
+  //签到成功页面
+  app.get('/sign_success/:meetingid',signin.sign_success);
   //签到墙
   app.get('/signin/:meetingid', signin.signin);
   //后台查看参会人员名单（已签到+未签到）

@@ -197,24 +197,51 @@ exports.signupp = function (req, res) {
   });
 }
 
+// //====此段代码需要优化 
+// //参会人员报名界面，用户曾经已经绑定过实名信息
+// exports.signup_past = function (req, res) {
+//   var signer =  req.session.signer;
+//   console.log(signer);
+//   if(signer){
+//     res.render("sign_up_past",{
+//       truename:    signer.truename,
+//       email:       signer.email,
+//       connect:     signer.connect,
+//       telephone:   signer.telephone,
+//       company:     signer.company,
+//       job:         signer.job,
+//       qq:          signer.qq,
+//     });
+//   }
+// }
+
 //====此段代码需要优化 
 //参会人员报名界面，用户曾经已经绑定过实名信息
 exports.signup_past = function (req, res) {
   var signer =  req.session.signer;
-  console.log(signer);
+  var meetingid = req.params.meetingid;
   if(signer){
-    res.render("sign_up_past",{
-      truename:    signer.truename,
-      email:       signer.email,
-      connect:     signer.connect,
-      telephone:   signer.telephone,
-      company:     signer.company,
-      job:         signer.job,
-      qq:          signer.qq,
+    Signin.getSigner(meetingid,signer.openid,function (err,signer1){
+      if(err){
+          console.log('getsignerinfo1: ' + err.description);  
+      }
+      if(signer1){
+        url_meeting = '/sign/'+ meetingid;       //跳转到签到界面
+        res.redirect(url_meeting);
+      }else{
+        res.render("sign_up_past",{
+          truename:    signer.truename,
+          email:       signer.email,
+          connect:     signer.connect,
+          telephone:   signer.telephone,
+          company:     signer.company,
+          job:         signer.job,
+          qq:          signer.qq,
+        }); 
+      }
     });
   }
 }
-
 //参会人员报名，用户曾经已经绑定过实名信息
 exports.signup_pastp = function (req, res) {
   var signer =  req.session.signer;
@@ -286,8 +313,29 @@ exports.signup_pastp = function (req, res) {
   });
 }
 
-//参会人员签到
-exports.sign = function (req, res) {
+// //参会人员签到
+// exports.sign = function (req, res) {
+//   var meetingid = req.params.meetingid;
+//   var query={meetingId:meetingid};
+//   console.log("im here");
+//   Meeting.getOne(query,function (err,meeting){
+//     if(err){
+//       console.log(err);
+//     }
+//     //console.log(meeting);
+//     if(meeting){
+//       meeting.sign_withSignUp = "yes";//假设此处是必须要报名后才能签到
+//       if(meeting.sign_withSignUp == "yes"){
+//        console.log("开始喽");
+//         sign_withSignUp(req,res);
+//       }
+//       else{
+//        sign_withoutSignUp(req,res);
+//       }
+//     }
+//   });
+// }
+exports.sign = function (req,res){
   var meetingid = req.params.meetingid;
   var query={meetingId:meetingid};
   console.log("im here");
@@ -295,20 +343,75 @@ exports.sign = function (req, res) {
     if(err){
       console.log(err);
     }
-    //console.log(meeting);
     if(meeting){
       meeting.sign_withSignUp = "yes";//假设此处是必须要报名后才能签到
       if(meeting.sign_withSignUp == "yes"){
-       console.log("开始喽");
-        sign_withSignUp(req,res);
-      }
-      else{
+        sign_wxsigner(req,res,function (wxsigner,stateOfSigner){
+          var openid = wxsigner.openid;
+          Signin.getSigner(meetingid,openid, function (err,signer){
+            if(err){
+              console.log(err);
+            }
+            if(signer){
+              if(signer.arrived){
+                if(signer.arrived == "no"){
+                  req.session.signer = signer;
+                  res.render("signin_signer",{
+                    truename:signer.truename,
+                    telephone:signer.telephone
+                  });
+                }else if(signer.arrived == "yes"){
+                  console.log("您已经签到成功");
+                  //req.session.openid = openid;
+                  res.redirect('/user/meeting/'+ meetingid);
+                }
+              }else{
+                console.log("签到前请先报名哦！");
+                res.redirect('/signup/'+ meetingid);
+              }
+            }else{
+              console.log("签到前请先报名哦！");
+              res.redirect('/signup/'+ meetingid);
+            }
+          });
+        });
+      }else{
        sign_withoutSignUp(req,res);
       }
+    }else{
+       res.render('error', {
+        message: "会议不存在或者网页出错",
+        error: "会议不存在或者网页出错"
+      });
     }
+  });   
+}
+//参会人员签到
+exports.signp = function (req, res) {
+  var meetingid = req.params.meetingid;
+  signer = req.session.signer;
+  signer.arrived = "yes";
+  var date = new Date(),
+  time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + 
+         date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
+  signer.time = time;
+  //此处数据库待改进
+  Signer.update(meetingid,signer,function(err){
+    if(err){
+      console.log(err);
+    }
+    console.log("签到成功");
+    res.redirect('/sign_success/'+ meetingid);
   });
 }
 
+//签到成功界面
+exports.sign_success = function (req,res){
+  var meetingid = req.params.meetingid;
+  res.render("signin_signsuccess",{
+    meetingid:meetingid
+  });
+}
 
 //签到墙
 exports.signin = function (req, res) {
@@ -348,7 +451,7 @@ exports.signincard = function (req,res){
     }
     if(result){
       meeting = result;
-      Signin.getSignersArrived(meetingid,"yes",function (err, signerArriveds){
+      Signin.getSignersArrived(meetingid,"yes","signin_card",function (err, signerArriveds){
         if(err){
           console.log(err);
         }
@@ -413,14 +516,14 @@ exports.signinstate = function (req,res){
     }
     if(result){
       meeting = result;
-      Signin.getSignersArrived(meetingid,"yes",function (err, signerArriveds){
+      Signin.getSignersArrived(meetingid,"yes","signin_state",function (err, signerArriveds){
         if(err){
           console.log(err);
         }
         if(signerArriveds){
           signerArrived = signerArriveds;
         }
-        Signin.getSignersArrived(meetingid,"no",function (err, signerNotArriveds){
+        Signin.getSignersArrived(meetingid,"no","signin_state",function (err, signerNotArriveds){
           if(err){
             console.log(err);
           }
@@ -517,45 +620,45 @@ function sign_withoutSignUp (req, res) {
 }
 
 
-//需要报名的签到
-function sign_withSignUp (req, res) {
-  var meetingid = req.params.meetingid;
-  sign_wxsigner(req,res,function (wxsigner,stateOfSigner){
-    var openid = wxsigner.openid;
-    Signin.getSigner(meetingid,openid, function (err,signer){
-      if(err){
-        console.log(err);
-      }
-      if(signer){
-        if(signer.arrived){
-          if(signer.arrived == "no"){
-            signer.arrived = "yes";
-            //此处数据库待改进
-            Signer.update(meetingid,signer,function(err){
-              if(err){
-                console.log(err);
-              }
-              console.log("签到成功");
-              res.redirect('/user/meeting/'+ meetingid);
-            });
-          }else{
-            console.log("您已经签到成功");
-            res.redirect('/user/meeting/'+ meetingid);
-          }
-        }
-      }else{
-        console.log("签到前请先报名哦！");
-       res.redirect('/signup/'+ meetingid);
-      }
-    });
-  });
-}
+// //需要报名的签到
+// function sign_withSignUp (req, res) {
+//   var meetingid = req.params.meetingid;
+//   sign_wxsigner(req,res,function (wxsigner,stateOfSigner){
+//     var openid = wxsigner.openid;
+//     Signin.getSigner(meetingid,openid, function (err,signer){
+//       if(err){
+//         console.log(err);
+//       }
+//       if(signer){
+//         if(signer.arrived){
+//           if(signer.arrived == "no"){
+//             signer.arrived = "yes";
+//             //此处数据库待改进
+//             Signer.update(meetingid,signer,function(err){
+//               if(err){
+//                 console.log(err);
+//               }
+//               console.log("签到成功");
+//               res.redirect('/user/meeting/'+ meetingid);
+//             });
+//           }else{
+//             console.log("您已经签到成功");
+//             res.redirect('/user/meeting/'+ meetingid);
+//           }
+//         }
+//       }else{
+//         console.log("签到前请先报名哦！");
+//        res.redirect('/signup/'+ meetingid);
+//       }
+//     });
+//   });
+// }
 
 //签到墙——有报名的签到
 function signin_withSignUp (req, res) {
   //此处也应该判断一下，是否需要报名再签到
   var meetingid = req.params.meetingid;
-  Signin.getSignersArrived(meetingid,"yes",function (err, signerArrived){
+  Signin.getSignersArrived(meetingid,"yes","wall",function (err, signerArrived){
     if(err){
       console.log(err);
     }

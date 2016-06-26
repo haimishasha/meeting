@@ -1,46 +1,65 @@
-<%- include header1 %>
-<form method="get" >
-<table class="am-table">
-	<thead>
-	<tr>
-		<th>姓名</th>
-		<th>性别</th>
-		<th>联系方式</th>
-		<th>所在单位</th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr>
-		<td>Amaze UI</td>
-		<td>http://amazeui.org</td>
-		<td>2012-10-01</td>
-		<td>2012-10-01</td>
-	</tr>
-	<tr>
-		<td>Amaze UI</td>
-		<td>http://amazeui.org</td>
-		<td>2012-10-01</td>
-		<td>2012-10-01</td>
-	</tr>
-	<tr class="am-active">
-		<td>Amaze UI(Active)</td>
-		<td>http://amazeui.org</td>
-		<td>2012-10-01</td>
-		<td>2012-10-01</td>
-	</tr>
-	<tr>
-		<td>Amaze UI</td>
-		<td>http://amazeui.org</td>
-		<td>2012-10-01</td>
-		<td>2012-10-01</td>
-	</tr>
-	<tr>
-		<td>Amaze UI</td>
-		<td>http://amazeui.org</td>
-		<td>2012-10-01</td>
-		<td>2012-10-01</td>
-	</tr>
-	</tbody>
-</table>
-</form>
-<%- include footer1 %>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>签到成功</title>
+		<link rel="stylesheet" href="/signin/signin/template1-css-template1.css">
+		<link rel="stylesheet" href="/signin/signin/app.min.css?a=1">
+		<link rel="stylesheet" href="/signin/signin/common.css">		
+		<script src="/signin/signin/jweixin-1.0.0.js"></script>
+		<script src="/signin/signin/WeixinShare.js"></script>
+		<script type="text/javascript">
+			//移动端版本兼容
+			if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+				var version = parseFloat(RegExp.$1);
+				if(version>2.3){
+					var phoneScale = parseInt(window.screen.width)/640;
+					document.write('<meta name="viewport" content="width=640, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+				}else{
+					document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+				}
+			}else{
+				document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+			}
+		</script><meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
+	</head>
+	<body>
+		<!-- main开始 -->
+		<section class="app-content ">
+			<section class="page page-heroPic page-panorama z-actived" style="transition: none; transform: translateY(0px); height: ;">
+				<section class="app-content">	
+					<div class="pageBg" style="background: url(/signin/signin/20150929133002_34806.jpg); background-size:100% 100%">
+						<div class="can_con_Img" id="can_con_Img"><!--逐帧动画开始-->
+							<img style="opacity: 0;" class="animated-1s zoomIn"                  src="/signin/signin/word1.png">
+						    <img style="opacity: 0;" class="animated-2s bounceInRight"           src="/signin/signin/word2.png">
+							<img style="opacity: 0;" class="animated-5s zoomIn         zoomout"  src="/signin/signin/50.png">
+							<img style="opacity: 0;" class="animated-6s bounceInRight  fadeout"  src="/signin/signin/40.png">
+							<img style="opacity: 0;" class="animated-7s bounceInRight  fadeout"  src="/signin/signin/30.png">
+							<img style="opacity: 0;" class="animated-8s bounceInRight  zoomout"  src="/signin/signin/20.png">
+							<img style="opacity: 0;" class="animated-9s bounceInRight  fadeout"  src="/signin/signin/10.png">	
+						</div><!--逐帧动画结束-->
+					</div>
+				</section>
+			</section>
+		</section>
+		<script src="/signin/signin/modules-template1.js"></script>
+		<script src="/signin/signin/btnAll.js"></script>
+
+		<script type="text/javascript">
+			//设定倒数秒数
+			var t = 6;
+			//显示倒数秒数
+			function showTime(){
+			    t -= 1;
+			    //document.getElementById('can_con_Img').innerHTML= t;
+			    if(t==0){
+			    	var url = '/user/meeting/'+ '<%= meetingid %>';
+			        location.href= url;
+			    }
+			    //每秒执行一次,showTime()
+			    setTimeout("showTime()",1000);
+			}
+			//执行showTime()
+			showTime();
+		</script>
+	</body>
+</html>

@@ -5,7 +5,7 @@ h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}
 ol, ul {list-style:none; }
 input,select,textarea{border:0;background:none;}
 em,i,b,s{font-style:normal; font-weight: normal;}
-a {border:none; text-decoration:none;}
+a {border:none; text-decoration:none;} 
 img{border: none;}
 .clearfix:after{clear:both; content:""; display:block; height:0; visibility:hidden; line-height:0;}
 /*@media screen and ( max-device-height:720px){

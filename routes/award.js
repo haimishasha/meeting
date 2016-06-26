@@ -206,7 +206,9 @@ app.get('/download', function (req, res) {
 app.get('/admin/award/:meetingId',function(req,res){
   //调用签到模块获取的用户信息，发送到抽奖界面
   var meetingid =  req.params.meetingId;
-  Signin.getSigners(meetingid,function(err,signers){
+  var arrived = 'yes';
+  var state = 'award';
+  Signin.getSignersArrived(meetingid,arrived,state,function(err,signers){
     if(err){
       console.log(err);
       //跳转错误页面
